@@ -7,4 +7,9 @@ public class Utility {
 		customerId += 1;
 		return String.valueOf(customerId);
 	}
+
+	public static boolean validateEmail(String email) {
+		String emailCheckRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+		return email.matches(emailCheckRegex);
+	}
 }
