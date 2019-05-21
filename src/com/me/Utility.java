@@ -1,10 +1,10 @@
 package com.me;
 
 public class Utility {
-	private static int customerId = 1;
+	private static int customerId = 0;
 
-	public static int getNextCustomerId() {
+	public static String getNextCustomerId() {
 		customerId += 1;
-		return customerId;
+		return String.valueOf(customerId);
 	}
 }
