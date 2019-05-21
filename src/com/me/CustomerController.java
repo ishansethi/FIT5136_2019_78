@@ -9,7 +9,7 @@ public class CustomerController {
      * Constructor for objects of class CustomerController
      */
 	public CustomerController() {
-        customer = new Customer();
+        Customer customer = new Customer(firstName, lastName, email, password);
     }
 	
 	/*
