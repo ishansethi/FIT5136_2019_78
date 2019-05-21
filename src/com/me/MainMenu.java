@@ -1,6 +1,7 @@
 package com.me;
 
 import java.util.Scanner;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.io.*;
@@ -258,9 +259,6 @@ public class MainMenu {
 			System.out.println("Enter customer email: ");
 			String customerEmail = scanner.nextLine();
 			if (Utility.validateEmail(customerEmail)) {
-				// Console console = System.console();
-				// String customerPassword = new String(console.readPassword("Enter password:
-				// "));
 				System.out.println("Enter password: ");
 				String customerPassword = scanner.nextLine();
 				if (CustomerController.validateLogin(customerEmail, customerPassword)) {
