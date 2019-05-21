@@ -1,93 +1,93 @@
 package com.me;
 
 public class Restaurant {
-	private String resId;
-	private String resName;
-	private String resAdd;
-	private String resSub;
-	private int resPcode;
-	private String resEmail;
-	private String resPhone;
-	private String resCuizine;	
+	private String id;
+	private String name;
+	private String address;
+	private String suburb;
+	private int postcode;
+	private String email;
+	private String phone;
+	private String cuisine;	
 	
 	public Restaurant() 
 	{
 		
 	}
 
-	public Restaurant(String resId, String resName, String resAdd, String resSub, int resPcode,  String resEmail, String resPhone, String resCuizine) {	
-		this.resId = resId;
-		this.resName = resName;
-		this.resAdd = resAdd;
-		this.resSub = resSub;
-		this.resPcode = resPcode;
-		this.resEmail = resEmail;
-		this.resPhone = resPhone;
-		this.resCuizine = resCuizine;
+	public Restaurant(String resId, String resName, String resAdd, String resSub, int resPcode,  String resEmail, String resPhone, String resCuisine) {	
+		this.id = resId;
+		this.name = resName;
+		this.address = resAdd;
+		this.suburb = resSub;
+		this.postcode = resPcode;
+		this.email = resEmail;
+		this.phone = resPhone;
+		this.cuisine = resCuisine;
 	}
 
 	public String getResId() {
-		return resId;
+		return id;
 	}
 
 	public void setResId(String resId) {
-		this.resId = resId;
+		this.id = resId;
 	}
 
 	public String getResName() {
-		return resName;
+		return name;
 	}
 
 	public void setResName(String resName) {
-		this.resName = resName;
+		this.name = resName;
 	}
 
 	public String getResAdd() {
-		return resAdd;
+		return address;
 	}
 
 	public void setResAdd(String resAdd) {
-		this.resAdd = resAdd;
+		this.address = resAdd;
 	}
 
 	public String getResSub() {
-		return resSub;
+		return suburb;
 	}
 
 	public void setResSub(String resSub) {
-		this.resSub = resSub;
+		this.suburb = resSub;
 	}
 
 	public int getResPcode() {
-		return resPcode;
+		return postcode;
 	}
 
 	public void setResPcode(int resPcode) {
-		this.resPcode = resPcode;
+		this.postcode = resPcode;
 	}
 
 	public String getResEmail() {
-		return resEmail;
+		return email;
 	}
 
 	public void setResEmail(String resEmail) {
-		this.resEmail = resEmail;
+		this.email = resEmail;
 	}
 
 	public String getResPhone() {
-		return resPhone;
+		return phone;
 	}
 
 	public void setResPhone(String resPhone) {
-		this.resPhone = resPhone;
+		this.phone = resPhone;
 	}
 
-	public String getResCuizine() {
-		return resCuizine;
+	public String getResCuisine() {
+		return cuisine;
 	}
 
-	public void setResCuizine(String resCuizine) {
-		this.resCuizine = resCuizine;
+	public void setResCuisine(String resCuizine) {
+		this.cuisine = resCuizine;
 	}
 	
 	

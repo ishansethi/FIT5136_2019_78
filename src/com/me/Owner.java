@@ -1,5 +1,7 @@
 package com.me;
 
+import java.util.ArrayList;
+
 public class Owner {
 	// instance variables
 	private String firstName;
@@ -8,6 +10,7 @@ public class Owner {
 	private String phoneNo;
 	private String email;
 	private String password;
+	private ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>();
 
 	// creating instance of customer with mandatory fields
 	public Owner(String firstName, String lastName, String email, String password) {
@@ -64,4 +67,13 @@ public class Owner {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public ArrayList<Restaurant> getRestaurantList() {
+		return restaurantList;
+	}
+
+	public void setRestaurantList(ArrayList<Restaurant> restaurantList) {
+		this.restaurantList = restaurantList;
+	}
+	
 }

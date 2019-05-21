@@ -3,8 +3,12 @@ package com.me;
 import java.util.ArrayList;
 
 public class AdminController {
-	private ArrayList<Owner> ownerList = new ArrayList<Owner>();
+	private static ArrayList<Owner> ownerList = new ArrayList<Owner>();
 	
+	public static ArrayList<Owner> getOwnerList() {
+		return ownerList;
+	}
+
 	/*
 	 * Method for registering an owner
 	 */

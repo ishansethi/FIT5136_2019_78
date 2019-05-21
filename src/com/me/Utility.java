@@ -12,4 +12,12 @@ public class Utility {
 		String emailCheckRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 		return email.matches(emailCheckRegex);
 	}
+
+	public static boolean isIntString(String input) {
+		for (int i = 0; i < input.length(); i++) {
+			if (!Character.isDigit(input.charAt(i)))
+				return false;
+		}
+		return true;
+	}
 }
