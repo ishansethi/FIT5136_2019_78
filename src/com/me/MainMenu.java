@@ -7,22 +7,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 public class MainMenu{
+	
 	private Scanner console;
 	private AdminController adminControl;
 	private RestaurantController restaurantControl;
 	private CustomerController customerControl;
-	private Validator validate;
+	private Utility utility;
+	
 	public MainMenu() {
-		
-		
-
         console = new Scanner(System.in);
-        validate = new Validator();
+        utility = new Utility();
         customerControl = new CustomerController();
         restaurantControl = new RestaurantController();
         adminControl  = new AdminController();
-		
-	
 	}
 	/**
      * A method to display the main menu
