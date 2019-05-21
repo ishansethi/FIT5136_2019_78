@@ -152,6 +152,21 @@ public class MainMenu {
 		System.out.println("(5) Log out");
 		System.out.println("Please select an option: ");
 	}
+	
+	/**
+	 * A method to display the manage restaurant owner dashboard
+	 */
+	public static void displayManageRstrtOwnerDashboard() {
+		// clear();
+		System.out.println("========================================================");
+		System.out.println("Welcome to Owner Management Menu");
+		System.out.println("========================================================");
+		System.out.println("(1) Register a new owner");
+		System.out.println("(2) Delete an owner");
+		System.out.println("(3) Go back to admin dashboard");
+		System.out.println("(4) Log out");
+		System.out.println("Please select an option: ");
+	}
 
 	public static void main(String[] args) {
 
@@ -192,7 +207,7 @@ public class MainMenu {
 				System.out.println("Invalid choice. Please choose again.");
 				// retryInput();
 			}
-
+			loop = false;
 		}
 	}
 
@@ -224,6 +239,7 @@ public class MainMenu {
 				System.out.println("Invalid choice. Please choose again.");
 				// retryInput();
 			}
+			loop = false;
 		}
 	}
 
@@ -234,7 +250,19 @@ public class MainMenu {
 			displayRegister();
 			String userChoice = scanner.nextLine();
 			if (Utility.isIntString(userChoice)) {
-
+				switch (userChoice) {
+				case "1":
+					CustomerController.registerCustomer();
+					startProgram();
+					break;
+				case "2":
+					startProgram();
+					break;
+				default:
+					System.out.println("Entered number is not a choice. Please choose again ");
+					register();
+					break;
+				}
 			} else {
 				System.out.println("Invalid choice. Please choose again.");
 				// retryInput();
@@ -306,7 +334,7 @@ public class MainMenu {
 				System.out.println("Enter password: ");
 				String adminPassword = scanner.nextLine();
 				if (AdminController.validateLogin(adminEmail, adminPassword)) {
-					displayAdminDashboard();
+					adminDashboard();
 					loop = false;
 				}
 			} else {
@@ -367,6 +395,71 @@ public class MainMenu {
 //				System.out.println("(3) Checkout ");
 //				System.out.println("(4) View your orders");
 //				System.out.println("(5) Log out");
+
+			} else {
+				System.out.println("Invalid choice. Please choose again.");
+				// retryInput();
+			}
+		}
+	}
+	
+	private static void adminDashboard() {
+
+		boolean loop = true;
+		while (loop) {
+			displayAdminDashboard();
+			String userChoice = scanner.nextLine();
+			if (Utility.isIntString(userChoice)) {
+				switch (userChoice) {
+				case "3":
+					manageRstrtOwner();
+					break;
+					
+				}
+
+//				System.out.println("(1) Manage Customer Feedback");
+//				System.out.println("(2) Manage Restaurant");
+//				System.out.println("(3) Manage Restaurant Owner");
+//				System.out.println("(4) Log out");
+
+			} else {
+				System.out.println("Invalid choice. Please choose again.");
+				// retryInput();
+			}
+		}
+	}
+	
+	private static void manageRstrtOwner() {
+
+		boolean loop = true;
+		while (loop) {
+			displayManageRstrtOwnerDashboard();
+			String userChoice = scanner.nextLine();
+			if (Utility.isIntString(userChoice)) {
+				switch (userChoice) {
+				case "1":
+					AdminController.registerOwner();
+					break;
+				case "2":
+					AdminController.deleteOwner();
+					break;
+				case "3":
+					adminDashboard();
+					break;
+				case "4":
+					startProgram();
+					break;
+				default:
+					System.out.println("Entered number is not a choice. Please choose again ");
+					manageRstrtOwner();
+					break;
+					
+				}
+
+//				System.out.println("(1) Register a new owner");
+//				System.out.println("(2) Delete an owner");
+//				System.out.println("(3) Go back to admin dashboard");
+//				System.out.println("(4) Log out");
 
 			} else {
 				System.out.println("Invalid choice. Please choose again.");

@@ -1,10 +1,12 @@
 package com.me;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CustomerController {
 
 	public static ArrayList<Customer> customerList = new ArrayList<Customer>();
+	static Scanner scanner = new Scanner(System.in);
 
 	/*
 	 * Method to view Cart
@@ -21,8 +23,38 @@ public class CustomerController {
 
 	}
 
+	/*
+	 * Method to register a customer
+	 */
 	public static void registerCustomer() {
-		// TODO: Add customer
+		
+		Customer newCustomer = new Customer("", "", "", "");
+		System.out.println("Please enter a first name: ");
+		newCustomer.setFirstName(scanner.nextLine());
+		System.out.println("Please enter a last name: ");
+		newCustomer.setLastName(scanner.nextLine());
+		System.out.println("Please enter email address: ");
+		newCustomer.setEmail(scanner.nextLine());
+		System.out.println("Please enter password: ");
+		newCustomer.setPassword(scanner.nextLine());
+		customerList.add(newCustomer);
+	}
+	
+	/*
+	 * Method to delete a customer
+	 */
+	public static void deleteCustomer() {
+		System.out.println("Please enter an email address: ");
+		String email = scanner.nextLine();
+		for (Customer customer : customerList) {
+			if (customer.getEmail().equals(email)) {
+				customerList.remove(customer);
+				System.out.print("The customer has been deleted");
+				break;
+			} else {
+				System.out.print("Customer does not exist");
+			}
+		}
 	}
 
 	public static boolean validateLogin(String customerEmail, String customerPassword) {
