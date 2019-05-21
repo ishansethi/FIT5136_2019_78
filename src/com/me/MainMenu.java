@@ -258,7 +258,7 @@ public class MainMenu {
 		while (loop) {
 			System.out.println("Enter customer email: ");
 			String customerEmail = scanner.nextLine();
-			if (Utility.validateEmail(customerEmail)) {
+			if (Utility.isValidEmail(customerEmail)) {
 				System.out.println("Enter password: ");
 				String customerPassword = scanner.nextLine();
 				if (CustomerController.validateLogin(customerEmail, customerPassword)) {

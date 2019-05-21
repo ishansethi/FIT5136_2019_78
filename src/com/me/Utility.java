@@ -11,7 +11,7 @@ public class Utility {
 		return String.valueOf(customerId);
 	}
 
-	public static boolean validateEmail(String email) {
+	public static boolean isValidEmail(String email) {
 		String emailCheckRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 		return email.matches(emailCheckRegex);
 	}
@@ -22,7 +22,7 @@ public class Utility {
 	 * @param password
 	 * @return
 	 */
-	public static boolean validatePassword(String password) {
+	public static boolean isValidPassword(String password) {
 
 		if (password.length() < minPasswordLength) {
 			return false;
