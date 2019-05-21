@@ -11,12 +11,6 @@ import java.util.HashMap;
 
 public class MainMenu {
 
-//	private String userInput;
-//	private AdminController adminControl;
-//	private RestaurantController restaurantControl;
-//	private CustomerController customerControl;
-//	private Utility utility;
-
 	static Scanner scanner = new Scanner(System.in);
 
 	public MainMenu() {
@@ -213,9 +207,11 @@ public class MainMenu {
 				case "1":
 					// customer login
 					customerLogin();
+					break;
 				case "2":
 					// owner
 					ownerLogin();
+					break;
 				case "3":
 					// admin
 					adminLogin();
@@ -290,7 +286,8 @@ public class MainMenu {
 				System.out.println("Enter password: ");
 				String ownerPassword = scanner.nextLine();
 				if (OwnerController.validateLogin(ownerEmail, ownerPassword)) {
-					displayRestaurantOwnerManagementMenu();
+					ownerDashboard();
+					
 					loop = false;
 				}
 			} else {
@@ -325,13 +322,52 @@ public class MainMenu {
 			displayCustomerDashboard();
 			String userChoice = scanner.nextLine();
 			if (Utility.isIntString(userChoice)) {
-
+				switch (userChoice) {
+				case "1":
+					ArrayList<Restaurant> allRestaurants = RestaurantController.getAllRestaurants();
+					System.out.println("Restaurant names: ");
+					for (Restaurant restaurant : allRestaurants) {
+						System.out.println("\n" + restaurant.getName());
+					}
+					break;
+					
+				}
 //				System.out.println("(1) View Restaurants");
 //				System.out.println("(2) Manage Cart");
 //				System.out.println("(3) Checkout ");
 //				System.out.println("(4) View your orders");
 //				System.out.println("(5) Log out");
-				
+
+			} else {
+				System.out.println("Invalid choice. Please choose again.");
+				// retryInput();
+			}
+		}
+	}
+	
+	private static void ownerDashboard() {
+
+		boolean loop = true;
+		while (loop) {
+			displayRestaurantManagementMenu();
+			String userChoice = scanner.nextLine();
+			if (Utility.isIntString(userChoice)) {
+				switch (userChoice) {
+				case "1":
+					ArrayList<Restaurant> allRestaurants = RestaurantController.getAllRestaurants();
+					System.out.println("Restaurant names: ");
+					for (Restaurant restaurant : allRestaurants) {
+						System.out.println("\n" + restaurant.getName());
+					}
+					break;
+					
+				}
+//				System.out.println("(1) View Restaurants");
+//				System.out.println("(2) Manage Cart");
+//				System.out.println("(3) Checkout ");
+//				System.out.println("(4) View your orders");
+//				System.out.println("(5) Log out");
+
 			} else {
 				System.out.println("Invalid choice. Please choose again.");
 				// retryInput();

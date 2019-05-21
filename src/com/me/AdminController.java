@@ -7,7 +7,7 @@ public class AdminController {
 
 	private static ArrayList<Owner> ownerList = new ArrayList<Owner>();
 	private static ArrayList<Admin> adminList = new ArrayList<Admin>();
-	Scanner scanner = new Scanner(System.in);
+	private static Scanner scanner = new Scanner(System.in);
 
 	public static ArrayList<Owner> getOwnerList() {
 		return ownerList;
@@ -16,8 +16,8 @@ public class AdminController {
 	/*
 	 * Method for registering an owner
 	 */
-	public void registerOwner() {// String firstName, String lastName, String email, String password) {
-		// Owner newOwner = new Owner(firstName, lastName, email, password);
+	public static void registerOwner() {
+
 		Owner newOwner = new Owner("", "", "", "");
 		System.out.println("Please enter a first name: ");
 		newOwner.setFirstName(scanner.nextLine());
@@ -33,7 +33,7 @@ public class AdminController {
 	/*
 	 * Method for deleting an owner
 	 */
-	public void deleteOwner() {
+	public static void deleteOwner() {
 		System.out.println("Please enter an email address: ");
 		String email = scanner.nextLine();
 		for (Owner owner : ownerList) {
@@ -49,7 +49,7 @@ public class AdminController {
 
 	public static boolean validateLogin(String adminEmail, String adminPassword) {
 
-		// Dummy data
+		// Sample data
 		Admin sampleAdmin = new Admin("Sample", "Admin", "sa@gmail.com", "pass");
 		adminList.add(sampleAdmin);
 

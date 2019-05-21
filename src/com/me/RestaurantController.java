@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class RestaurantController {
 
 	// instance variables
-	ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>();
+	private static ArrayList<Restaurant> allRestaurants = new ArrayList<Restaurant>();
 	Scanner scanner = new Scanner(System.in);
 
 	// constructor
@@ -14,15 +14,21 @@ public class RestaurantController {
 
 	}
 
-	public ArrayList<Restaurant> searchRestaurant() {
+	public static ArrayList<Restaurant> getAllRestaurants() {
 
 		// Retrieve all the restaurants in the system
 		ArrayList<Owner> ownerList = AdminController.getOwnerList();
 		for (Owner owner : ownerList) {
 			for (Restaurant restaurant : owner.getRestaurantList()) {
-				restaurantList.add(restaurant);
+				allRestaurants.add(restaurant);
 			}
 		}
+		return allRestaurants;
+	}
+
+	public ArrayList<Restaurant> searchRestaurant() {
+
+		getAllRestaurants();
 
 		ArrayList<Restaurant> searchResult = new ArrayList<Restaurant>();
 
@@ -37,8 +43,8 @@ public class RestaurantController {
 		case "1":
 			System.out.println("Enter restaurant name: ");
 			String resName = scanner.nextLine();
-			for (Restaurant restaurant : restaurantList) {
-				if (restaurant.getResName().equalsIgnoreCase(resName)) {
+			for (Restaurant restaurant : allRestaurants) {
+				if (restaurant.getName().equalsIgnoreCase(resName)) {
 					searchResult.add(restaurant);
 				}
 			}
@@ -49,8 +55,8 @@ public class RestaurantController {
 		case "2":
 			System.out.println("Enter suburb name: ");
 			String resSuburb = scanner.nextLine();
-			for (Restaurant restaurant : restaurantList) {
-				if (restaurant.getResSub().equalsIgnoreCase(resSuburb)) {
+			for (Restaurant restaurant : allRestaurants) {
+				if (restaurant.getSuburb().equalsIgnoreCase(resSuburb)) {
 					searchResult.add(restaurant);
 				}
 			}
@@ -61,8 +67,8 @@ public class RestaurantController {
 		case "3":
 			System.out.println("Enter cuisine: ");
 			String resCuisine = scanner.nextLine();
-			for (Restaurant restaurant : restaurantList) {
-				if (restaurant.getResSub().equalsIgnoreCase(resCuisine)) {
+			for (Restaurant restaurant : allRestaurants) {
+				if (restaurant.getCuisine().equalsIgnoreCase(resCuisine)) {
 					searchResult.add(restaurant);
 				}
 			}
@@ -73,8 +79,8 @@ public class RestaurantController {
 		case "4":
 			System.out.println("Enter postcode: ");
 			String resPostcode = scanner.nextLine();
-			for (Restaurant restaurant : restaurantList) {
-				if (String.valueOf(restaurant.getResPcode()).equalsIgnoreCase(resPostcode)) {
+			for (Restaurant restaurant : allRestaurants) {
+				if (String.valueOf(restaurant.getPostcode()).equalsIgnoreCase(resPostcode)) {
 					searchResult.add(restaurant);
 				}
 			}

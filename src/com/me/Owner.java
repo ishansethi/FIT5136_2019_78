@@ -18,8 +18,13 @@ public class Owner {
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+
+		// Sample data
+		Restaurant sampleRestaurant = new Restaurant("Student Canteen", "1, Monash Drive", "Caulfield", 3162,
+				"stucan@gmail.com", "04111222333", "Snacks");
+		restaurantList.add(sampleRestaurant);
 	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -75,5 +80,5 @@ public class Owner {
 	public void setRestaurantList(ArrayList<Restaurant> restaurantList) {
 		this.restaurantList = restaurantList;
 	}
-	
+
 }

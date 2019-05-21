@@ -1,7 +1,8 @@
 package com.me;
 
 public class Utility {
-	private static int customerId = 0;
+	private static int customerId = 1000;
+	private static int restaurantId = 100;
 	private static final int minPasswordLength = 8;
 	private static final int minAlphabetCount = 3;
 	private static final int minNumberCount = 2;
@@ -9,6 +10,11 @@ public class Utility {
 	public static String getNextCustomerId() {
 		customerId += 1;
 		return String.valueOf(customerId);
+	}
+	
+	public static String getNextRestaurantId() {
+		restaurantId += 1;
+		return String.valueOf(restaurantId);
 	}
 
 	public static boolean isValidEmail(String email) {

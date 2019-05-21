@@ -8,87 +8,78 @@ public class Restaurant {
 	private int postcode;
 	private String email;
 	private String phone;
-	private String cuisine;	
-	
-	public Restaurant() 
-	{
-		
+	private String cuisine;
+
+	public Restaurant(String name, String address, String suburb, int postcode, String email, String phoneNumber,
+			String cuisine) {
+		this.id = Utility.getNextRestaurantId();
+		this.name = name;
+		this.address = address;
+		this.suburb = suburb;
+		this.postcode = postcode;
+		this.email = email;
+		this.phone = phoneNumber;
+		this.cuisine = cuisine;
 	}
 
-	public Restaurant(String resId, String resName, String resAdd, String resSub, int resPcode,  String resEmail, String resPhone, String resCuisine) {	
-		this.id = resId;
-		this.name = resName;
-		this.address = resAdd;
-		this.suburb = resSub;
-		this.postcode = resPcode;
-		this.email = resEmail;
-		this.phone = resPhone;
-		this.cuisine = resCuisine;
-	}
-
-	public String getResId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setResId(String resId) {
-		this.id = resId;
-	}
-
-	public String getResName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setResName(String resName) {
-		this.name = resName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getResAdd() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setResAdd(String resAdd) {
-		this.address = resAdd;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getResSub() {
+	public String getSuburb() {
 		return suburb;
 	}
 
-	public void setResSub(String resSub) {
-		this.suburb = resSub;
+	public void setSuburb(String suburb) {
+		this.suburb = suburb;
 	}
 
-	public int getResPcode() {
+	public int getPostcode() {
 		return postcode;
 	}
 
-	public void setResPcode(int resPcode) {
-		this.postcode = resPcode;
+	public void setPostcode(int postcode) {
+		this.postcode = postcode;
 	}
 
-	public String getResEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setResEmail(String resEmail) {
-		this.email = resEmail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getResPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setResPhone(String resPhone) {
-		this.phone = resPhone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public String getResCuisine() {
+	public String getCuisine() {
 		return cuisine;
 	}
 
-	public void setResCuisine(String resCuizine) {
-		this.cuisine = resCuizine;
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
 	}
-	
-	
+
 }

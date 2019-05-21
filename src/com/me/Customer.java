@@ -24,10 +24,6 @@ public class Customer {
 		return custId;
 	}
 
-	public void setCustId(String custId) {
-		this.custId = custId;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
