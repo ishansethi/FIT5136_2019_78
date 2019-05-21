@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 public class MainMenu{
-	
+	private String userInput ;
 	private Scanner console;
 	private AdminController adminControl;
 	private RestaurantController restaurantControl;
@@ -15,6 +15,7 @@ public class MainMenu{
 	private Utility utility;
 	
 	public MainMenu() {
+		userInput = "noinput";
         console = new Scanner(System.in);
         utility = new Utility();
         customerControl = new CustomerController();
@@ -140,9 +141,6 @@ public class MainMenu{
     }
     
     
-    
-    
-    
     /**
      * A method to display the visitor dashboard
      */
@@ -156,10 +154,7 @@ public class MainMenu{
         System.out.println("(2) Back to Main Menu");
         System.out.println("Please choose an option....... ");
     }
-    
-    
-    
-    
+      
     /**
      * A method to display the customer dashboard
      */
@@ -177,5 +172,8 @@ public class MainMenu{
         System.out.println("Please select an option: ");      
     }
 	
+    
+   
+    
 }
 	
