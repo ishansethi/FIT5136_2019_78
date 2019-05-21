@@ -108,6 +108,22 @@ public class MainMenu{
     }
     
     
+    /**
+     * A method to display the Restaurant management dashboard
+     */
+    private void displayRestaurantManagementMenu()
+    {
+        //clear();
+        System.out.println("========================================================");
+        System.out.println("Welcome to Restaurant Management Menu");
+        System.out.println("========================================================");
+        System.out.println("(1) View Restaurants");
+        System.out.println("(3) Delete Restaurant");
+        System.out.println("(4) Go back to Admin Main Menu");
+        System.out.println("Please choose an option....... ");
+    }
+    
+    
     
     
     /**
@@ -124,6 +140,44 @@ public class MainMenu{
         System.out.println("(3) Delete Restaurant Owner");
         System.out.println("(4) Go back to Admin Main Menu");
         System.out.println("Please choose an option....... ");
+    }
+    
+    
+    
+    
+    
+    /**
+     * A method to display the visitor dashboard
+     */
+    private void displayGuestDashboard()
+    {
+        //clear();
+        System.out.println("========================================================");
+        System.out.println("Welcome to the Monash Eats!");
+        System.out.println("========================================================");
+        System.out.println("(1) View Restaurants");
+        System.out.println("(2) Back to Main Menu");
+        System.out.println("Please choose an option....... ");
+    }
+    
+    
+    
+    
+    /**
+     * A method to display the customer dashboard
+     */
+    private void displayCustomerDashboard()
+    {
+        //clear();
+        System.out.println("========================================================");
+        System.out.println("Hi" + "," + " Welcome to Monash Eats, Let's Order Some food");
+        System.out.println("========================================================");
+        System.out.println("(1) View Restaurants");
+        System.out.println("(2) Manage Cart");
+        System.out.println("(3) Checkout ");
+        System.out.println("(4) View your orders");
+        System.out.println("(5) Log out");
+        System.out.println("Please select an option: ");      
     }
 	
 }
