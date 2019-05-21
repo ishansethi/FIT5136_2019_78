@@ -213,7 +213,16 @@ public class MainMenu {
 				case "1":
 					// customer login
 					customerLogin();
-
+				case "2":
+					// owner
+					ownerLogin();
+				case "3":
+					// admin
+					adminLogin();
+					break;
+				default:
+					System.out.println("Entered number is not a choice. Please choose again ");
+					break;
 				}
 			} else {
 				System.out.println("Invalid choice. Please choose again.");
@@ -271,6 +280,44 @@ public class MainMenu {
 		}
 	}
 
+	private static void ownerLogin() {
+
+		boolean loop = true;
+		while (loop) {
+			System.out.println("Enter owner email: ");
+			String ownerEmail = scanner.nextLine();
+			if (Utility.isValidEmail(ownerEmail)) {
+				System.out.println("Enter password: ");
+				String ownerPassword = scanner.nextLine();
+				if (OwnerController.validateLogin(ownerEmail, ownerPassword)) {
+					displayRestaurantOwnerManagementMenu();
+					loop = false;
+				}
+			} else {
+				System.out.println("Invalid email entered. Try again.");
+			}
+		}
+	}
+
+	private static void adminLogin() {
+
+		boolean loop = true;
+		while (loop) {
+			System.out.println("Enter admin email: ");
+			String adminEmail = scanner.nextLine();
+			if (Utility.isValidEmail(adminEmail)) {
+				System.out.println("Enter password: ");
+				String adminPassword = scanner.nextLine();
+				if (AdminController.validateLogin(adminEmail, adminPassword)) {
+					displayAdminDashboard();
+					loop = false;
+				}
+			} else {
+				System.out.println("Invalid email entered. Try again.");
+			}
+		}
+	}
+
 	private static void customerDashboard() {
 
 		boolean loop = true;
@@ -279,6 +326,12 @@ public class MainMenu {
 			String userChoice = scanner.nextLine();
 			if (Utility.isIntString(userChoice)) {
 
+//				System.out.println("(1) View Restaurants");
+//				System.out.println("(2) Manage Cart");
+//				System.out.println("(3) Checkout ");
+//				System.out.println("(4) View your orders");
+//				System.out.println("(5) Log out");
+				
 			} else {
 				System.out.println("Invalid choice. Please choose again.");
 				// retryInput();

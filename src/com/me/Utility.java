@@ -28,21 +28,34 @@ public class Utility {
 			return false;
 		}
 
-		int characterCount = 0;
-		int numericCount = 0;
+		int alphabetCount = 0;
+		int numberCount = 0;
 
 		for (int i = 0; i < password.length(); i++) {
 			// check for alphabets
 			if (password.toLowerCase().charAt(i) >= 'a' && password.toLowerCase().charAt(i) >= 'z') {
-				characterCount++;
+				alphabetCount++;
 			}
 			// check for numbers
 			if (password.charAt(i) >= '0' && password.charAt(i) <= '9') {
-				numericCount++;
+				numberCount++;
 			}
 		}
 
-		return (characterCount >= minAlphabetCount && numericCount >= minNumberCount);
+		boolean alphabetCheck = alphabetCount >= minAlphabetCount;
+		boolean numberCheck = numberCount >= minNumberCount;
+
+		if (!alphabetCheck) {
+			System.out.println("Password doesn't meet minimum alphabet count of " + minAlphabetCount);
+			return false;
+		}
+
+		if (!numberCheck) {
+			System.out.println("Password doesn't meet minimum number count of " + minNumberCount);
+			return false;
+		}
+
+		return true;
 	}
 
 	public static boolean isIntString(String input) {

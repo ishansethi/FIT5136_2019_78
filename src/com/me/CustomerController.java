@@ -3,9 +3,8 @@ package com.me;
 import java.util.ArrayList;
 
 public class CustomerController {
-	// instances of customers
+
 	public static ArrayList<Customer> customerList = new ArrayList<Customer>();
-	
 
 	/*
 	 * Method to view Cart
@@ -22,13 +21,17 @@ public class CustomerController {
 
 	}
 
+	public static void registerCustomer() {
+		// TODO: Add customer
+	}
+
 	public static boolean validateLogin(String customerEmail, String customerPassword) {
-		
-		//TODO: Dummy data, remove later
-		Customer c1 = new Customer("John", "Doe", "jd@gmail.com", "pass");
-		customerList.add(c1);
-		
-		
+
+		// Dummy data
+		Customer sampleCustomer = new Customer("Sample", "Customer", "sc@gmail.com", "pass");
+		System.out.println("Sample Customer ID: " + sampleCustomer.getCustId());
+		customerList.add(sampleCustomer);
+
 		boolean login = false;
 
 		for (Customer customer : customerList) {
