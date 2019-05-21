@@ -29,6 +29,7 @@ public class RestaurantController {
 		String userChoice = scanner.nextLine();
 		searchChoices();
 		if (!Utility.isIntString(userChoice)) {
+			System.out.println("Invalid choice. Please choose again.");
 			searchChoices();
 		}
 
