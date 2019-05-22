@@ -47,7 +47,7 @@ public class AdminController {
 		}
 	}
 
-	public static boolean validateLogin(String adminEmail, String adminPassword) {
+	public static boolean validateAdminLogin(String adminEmail, String adminPassword) {
 
 		// Sample data
 		Admin sampleAdmin = new Admin("Sample", "Admin", "sa@gmail.com", "pass");
@@ -70,4 +70,26 @@ public class AdminController {
 		return login;
 	}
 
+	public static boolean validateOwnerLogin(String ownerEmail, String ownerPassword) {
+
+		// Dummy data
+		Owner sampleOwner = new Owner("Sample", "Owner", "so@gmail.com", "pass");
+		ownerList.add(sampleOwner);
+
+		boolean login = false;
+
+		for (Owner owner : ownerList) {
+			if (owner.getEmail().equals(ownerEmail)) {
+				if (owner.getPassword().equals(ownerPassword)) {
+					login = true;
+				} else {
+					System.out.println("Wrong password entered.");
+				}
+			} else {
+				System.out.println("Email address not found in records.");
+			}
+		}
+
+		return login;
+	}
 }

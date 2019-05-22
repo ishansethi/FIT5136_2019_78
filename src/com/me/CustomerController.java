@@ -27,7 +27,7 @@ public class CustomerController {
 	 * Method to register a customer
 	 */
 	public static void registerCustomer() {
-		
+
 		Customer newCustomer = new Customer("", "", "", "");
 		System.out.println("Please enter a first name: ");
 		newCustomer.setFirstName(scanner.nextLine());
@@ -39,16 +39,18 @@ public class CustomerController {
 		newCustomer.setPassword(scanner.nextLine());
 		customerList.add(newCustomer);
 	}
-	
+
 	/*
 	 * Method to delete a customer
 	 */
-	public static void deleteCustomer() {
-		System.out.println("Please enter an email address: ");
-		String email = scanner.nextLine();
+	public static void deleteCustomer(String email) {
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(email)) {
-				customerList.remove(customer);
+				customer.setAddress("");
+				customer.setFirstName("");
+				customer.setLastName("");
+				customer.setPassword("");
+				customer.setPhoneNo("");
 				System.out.print("The customer has been deleted");
 				break;
 			} else {
@@ -60,15 +62,17 @@ public class CustomerController {
 	public static boolean validateLogin(String customerEmail, String customerPassword) {
 
 		// Dummy data
-		Customer sampleCustomer = new Customer("Sample", "Customer", "sc@gmail.com", "pass");
-		System.out.println("Sample Customer ID: " + sampleCustomer.getCustId());
-		customerList.add(sampleCustomer);
+		Customer sampleCustomer1 = new Customer("Sample", "Customer", "sc@gmail.com", "pass");
+		System.out.println("Sample Customer ID: " + sampleCustomer1.getCustId());
+		customerList.add(sampleCustomer1);
 
 		boolean login = false;
 
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(customerEmail)) {
-				if (customer.getPassword().equals(customerPassword)) {
+				if (customer.getPassword().equals("")) {
+					System.out.println("User does not exist in the system anymore");
+				} else if (customer.getPassword().equals(customerPassword)) {
 					login = true;
 				} else {
 					System.out.println("Wrong password entered.");

@@ -13,6 +13,10 @@ public class MainMenu {
 
 	static Scanner scanner = new Scanner(System.in);
 
+	CustomerController customerController = new CustomerController();
+	RestaurantController restaurantController = new RestaurantController();
+	AdminController adminController = new AdminController();
+
 	public MainMenu() {
 //		userInput = "noinput";
 //		utility = new Utility();
@@ -152,11 +156,11 @@ public class MainMenu {
 		System.out.println("(5) Log out");
 		System.out.println("Please select an option: ");
 	}
-	
+
 	/**
 	 * A method to display the manage restaurant owner dashboard
 	 */
-	public static void displayManageRstrtOwnerDashboard() {
+	public static void displayOwnerDashboard() {
 		// clear();
 		System.out.println("========================================================");
 		System.out.println("Welcome to Owner Management Menu");
@@ -313,9 +317,9 @@ public class MainMenu {
 			if (Utility.isValidEmail(ownerEmail)) {
 				System.out.println("Enter password: ");
 				String ownerPassword = scanner.nextLine();
-				if (OwnerController.validateLogin(ownerEmail, ownerPassword)) {
+				if (AdminController.validateOwnerLogin(ownerEmail, ownerPassword)) {
 					ownerDashboard();
-					
+
 					loop = false;
 				}
 			} else {
@@ -333,7 +337,7 @@ public class MainMenu {
 			if (Utility.isValidEmail(adminEmail)) {
 				System.out.println("Enter password: ");
 				String adminPassword = scanner.nextLine();
-				if (AdminController.validateLogin(adminEmail, adminPassword)) {
+				if (AdminController.validateAdminLogin(adminEmail, adminPassword)) {
 					adminDashboard();
 					loop = false;
 				}
@@ -358,7 +362,7 @@ public class MainMenu {
 						System.out.println("\n" + restaurant.getName());
 					}
 					break;
-					
+
 				}
 //				System.out.println("(1) View Restaurants");
 //				System.out.println("(2) Manage Cart");
@@ -372,7 +376,7 @@ public class MainMenu {
 			}
 		}
 	}
-	
+
 	private static void ownerDashboard() {
 
 		boolean loop = true;
@@ -388,7 +392,7 @@ public class MainMenu {
 						System.out.println("\n" + restaurant.getName());
 					}
 					break;
-					
+
 				}
 //				System.out.println("(1) View Restaurants");
 //				System.out.println("(2) Manage Cart");
@@ -402,7 +406,7 @@ public class MainMenu {
 			}
 		}
 	}
-	
+
 	private static void adminDashboard() {
 
 		boolean loop = true;
@@ -412,9 +416,9 @@ public class MainMenu {
 			if (Utility.isIntString(userChoice)) {
 				switch (userChoice) {
 				case "3":
-					manageRstrtOwner();
+					manageRestaurantOwner();
 					break;
-					
+
 				}
 
 //				System.out.println("(1) Manage Customer Feedback");
@@ -428,12 +432,12 @@ public class MainMenu {
 			}
 		}
 	}
-	
-	private static void manageRstrtOwner() {
+
+	private static void manageRestaurantOwner() {
 
 		boolean loop = true;
 		while (loop) {
-			displayManageRstrtOwnerDashboard();
+			displayOwnerDashboard();
 			String userChoice = scanner.nextLine();
 			if (Utility.isIntString(userChoice)) {
 				switch (userChoice) {
@@ -451,9 +455,9 @@ public class MainMenu {
 					break;
 				default:
 					System.out.println("Entered number is not a choice. Please choose again ");
-					manageRstrtOwner();
+					manageRestaurantOwner();
 					break;
-					
+
 				}
 
 //				System.out.println("(1) Register a new owner");
