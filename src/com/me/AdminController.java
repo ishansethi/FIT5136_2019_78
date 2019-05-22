@@ -49,7 +49,22 @@ public class AdminController {
 		
 		System.out.println("Please enter password: ");
 		newOwner.setPassword(scanner.nextLine());
-		
+
+		// Sample data
+		Restaurant sampleRestaurant = new Restaurant("Student Canteen", "1, Monash Drive", "Caulfield", 3162,
+				"stucan@gmail.com", "04111222333", "Snacks", newOwner);
+
+		Item item1 = new Item("Item 1", "Item 1 Description", 5);
+		Item item2 = new Item("Item 2", "Item 2 Description", 50);
+		ArrayList<Item> itemList = new ArrayList<Item>();
+		itemList.add(item1);
+		itemList.add(item2);
+		sampleRestaurant.setMenu(itemList);
+
+		ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>();
+		restaurantList.add(sampleRestaurant);
+		newOwner.setRestaurantList(restaurantList);
+
 		ownerList.add(newOwner);
 		System.out.println("Owner added successfully");
 	}

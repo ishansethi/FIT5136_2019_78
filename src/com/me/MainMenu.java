@@ -317,6 +317,23 @@ public class MainMenu {
 					for (Restaurant restaurant : allRestaurants) {
 						System.out.println("\n" + restaurant.getName());
 					}
+					System.out.println("----------------------------------");
+					System.out.println("Choose from restaurant list? (y/n)");
+					String userInput = scanner.nextLine();
+					if (userInput.equalsIgnoreCase("y") || userInput.equalsIgnoreCase("yes")) {
+						System.out.println("Enter name of chosen restaurant: ");
+						String choice = scanner.nextLine();
+						Restaurant chosenRestaurant = null;
+						for (Restaurant rest : allRestaurants) {
+							if (rest.getName().equalsIgnoreCase(choice)) {
+								chosenRestaurant = rest;
+							}
+						}
+						System.out.println("Menu for " + chosenRestaurant.getName() + ": ");
+						for (Item item : chosenRestaurant.getMenu()) {
+							System.out.println("\nName: " + item.getName() + "\t$" + item.getPrice());
+						}
+					}
 					break;
 				case "2":
 					// search for a restaurant

@@ -11,10 +11,11 @@ public class Restaurant {
 	private String email;
 	private String phone;
 	private String cuisine;
+	private Owner owner;
 	private ArrayList<Item> menu = new ArrayList<Item>();
 
 	public Restaurant(String name, String address, String suburb, int postcode, String email, String phoneNumber,
-			String cuisine) {
+			String cuisine, Owner owner) {
 		this.id = Utility.getNextRestaurantId();
 		this.name = name;
 		this.address = address;
@@ -23,6 +24,7 @@ public class Restaurant {
 		this.email = email;
 		this.phone = phoneNumber;
 		this.cuisine = cuisine;
+		this.owner = owner;
 	}
 
 	public String getId() {
@@ -91,6 +93,14 @@ public class Restaurant {
 
 	public void setMenu(ArrayList<Item> menu) {
 		this.menu = menu;
+	}
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
 	}
 
 }
