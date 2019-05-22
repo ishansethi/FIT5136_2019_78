@@ -309,15 +309,29 @@ public class MainMenu {
 			displayCustomerDashboard();
 			String userChoice = scanner.nextLine();
 			if (Utility.isIntString(userChoice)) {
+				ArrayList<Restaurant> allRestaurants = RestaurantController.getAllRestaurants();
 				switch (userChoice) {
 				case "1":
-					ArrayList<Restaurant> allRestaurants = RestaurantController.getAllRestaurants();
+					// list all restaurants
 					System.out.println("Restaurant names: ");
 					for (Restaurant restaurant : allRestaurants) {
 						System.out.println("\n" + restaurant.getName());
 					}
 					break;
+				case "2":
+					// search for a restaurant
+					RestaurantController.searchRestaurant();
+					break;
+				case "3":
+					// TODO: manage cart
+					break;
 				case "4":
+					// TODO: checkout
+					break;
+				case "5":
+					// TODO: view past orders
+					break;
+				case "6":
 					System.out.println("Logged out successfully.");
 					loop = false;
 					break;
