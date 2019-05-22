@@ -92,4 +92,26 @@ public class AdminController {
 
 		return login;
 	}
+
+	public static boolean deleteRestaurant(String ownerEmail, String restaurantName) {
+		Owner restaurantOwner = null;
+		int index = -1;
+		for (Owner owner : ownerList) {
+			if (owner.getEmail().equals(ownerEmail)) {
+				restaurantOwner = owner;
+				index = ownerList.indexOf(owner);
+			} else {
+				System.out.println("Owner not found.");
+				return false;
+			}
+		}
+		if (restaurantOwner != null && index >= 0) {
+			restaurantOwner.getRestaurantList().remove(index);
+		} else {
+			System.out.println("Restaurant not found");
+			return false;
+		}
+		return true;
+	}
+
 }

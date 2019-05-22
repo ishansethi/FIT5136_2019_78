@@ -25,6 +25,24 @@ public class RestaurantController {
 		}
 		return allRestaurants;
 	}
+	
+	/**
+	 * Get a list of restaurants owned by a particular owner
+	 * 
+	 * @param ownerEmail
+	 * @return
+	 */
+	public static ArrayList<Restaurant> getListOfRestaurantsOwned(String ownerEmail) {
+
+		ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>();
+
+		for (Owner owner : AdminController.getOwnerList()) {
+			if (owner.getEmail().equals(ownerEmail)) {
+				restaurantList = owner.getRestaurantList();
+			}
+		}
+		return restaurantList;
+	}
 
 	public static ArrayList<Restaurant> searchRestaurant() {
 

@@ -29,21 +29,36 @@ public class CustomerController {
 	public static void registerCustomer() {
 
 		Customer newCustomer = new Customer("", "", "", "");
+
 		System.out.println("Please enter a first name: ");
 		newCustomer.setFirstName(scanner.nextLine());
+
 		System.out.println("Please enter a last name: ");
 		newCustomer.setLastName(scanner.nextLine());
+
 		System.out.println("Please enter email address: ");
-		newCustomer.setEmail(scanner.nextLine());
+		String customerEmail = scanner.nextLine();
+		ArrayList<Owner> ownerList = AdminController.getOwnerList();
+		for (Owner owner : ownerList) {
+			if (owner.getEmail().equals(customerEmail)) {
+				System.out.println("Existing restaurant owner cannot be registered as a customer");
+				return;
+			}
+		}
+		newCustomer.setEmail(customerEmail);
+
 		System.out.println("Please enter password: ");
 		newCustomer.setPassword(scanner.nextLine());
+
 		customerList.add(newCustomer);
+		System.out.println("Customer added successfully");
 	}
 
 	/*
 	 * Method to delete a customer
 	 */
 	public static void deleteCustomer(String email) {
+		
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(email)) {
 				customer.setAddress("");
