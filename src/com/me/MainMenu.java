@@ -114,18 +114,19 @@ public class MainMenu {
 	}
 
 	/**
-	 * A method to display the Restaurant Owner management dashboard
+	 * A method to display the manage restaurant owner dashboard
 	 */
 	public static void displayRestaurantOwnerManagementMenu() {
 		// clear();
 		System.out.println("========================================================");
-		System.out.println("Welcome to Restaurant Owner Management Menu");
+		System.out.println("Welcome to Owner Management Menu");
 		System.out.println("========================================================");
-		System.out.println("(1) View Restaurant Owners");
-		System.out.println("(2) Add Restaurant Owner");
-		System.out.println("(3) Delete Restaurant Owner");
-		System.out.println("(4) Go back to Admin Main Menu");
-		System.out.println("Please choose an option....... ");
+		System.out.println("(1) Register a new owner");
+		System.out.println("(2) Delete an owner");
+		System.out.println("(3) View Restaurant Owners");
+		System.out.println("(4) Go back to admin dashboard");
+		System.out.println("(5) Log out");
+		System.out.println("Please select an option: ");
 	}
 
 	/**
@@ -154,21 +155,6 @@ public class MainMenu {
 		System.out.println("(3) Checkout ");
 		System.out.println("(4) View your orders");
 		System.out.println("(5) Log out");
-		System.out.println("Please select an option: ");
-	}
-
-	/**
-	 * A method to display the manage restaurant owner dashboard
-	 */
-	public static void displayOwnerDashboard() {
-		// clear();
-		System.out.println("========================================================");
-		System.out.println("Welcome to Owner Management Menu");
-		System.out.println("========================================================");
-		System.out.println("(1) Register a new owner");
-		System.out.println("(2) Delete an owner");
-		System.out.println("(3) Go back to admin dashboard");
-		System.out.println("(4) Log out");
 		System.out.println("Please select an option: ");
 	}
 
@@ -437,7 +423,7 @@ public class MainMenu {
 
 		boolean loop = true;
 		while (loop) {
-			displayOwnerDashboard();
+			displayRestaurantOwnerManagementMenu();
 			String userChoice = scanner.nextLine();
 			if (Utility.isIntString(userChoice)) {
 				switch (userChoice) {
@@ -448,9 +434,12 @@ public class MainMenu {
 					AdminController.deleteOwner();
 					break;
 				case "3":
-					adminDashboard();
+					AdminController.getOwnerList();
 					break;
 				case "4":
+					adminDashboard();
+					break;
+				case "5":
 					startProgram();
 					break;
 				default:
@@ -462,13 +451,15 @@ public class MainMenu {
 
 //				System.out.println("(1) Register a new owner");
 //				System.out.println("(2) Delete an owner");
-//				System.out.println("(3) Go back to admin dashboard");
-//				System.out.println("(4) Log out");
+//				System.out.println("(3) View Restaurant Owners");
+//				System.out.println("(4) Go back to admin dashboard");
+//				System.out.println("(5) Log out");
 
 			} else {
 				System.out.println("Invalid choice. Please choose again.");
 				// retryInput();
 			}
+			loop = false;
 		}
 	}
 
