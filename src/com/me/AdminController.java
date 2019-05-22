@@ -20,36 +20,32 @@ public class AdminController {
 	/*
 	 * Method for registering an owner
 	 */
-	public static void registerOwner() {
+	public static void registerOwner(String firstName, String lastName, String ownerEmail, String ownerPassword) {
 
-		Owner newOwner = new Owner("", "", "", "");
-		System.out.println("Please enter a first name: ");
-		newOwner.setFirstName(scanner.nextLine());
-
-		System.out.println("Please enter a last name: ");
-		newOwner.setLastName(scanner.nextLine());
-
-		System.out.println("Please enter email address: ");
-		String ownerEmail = scanner.nextLine();
-		// newOwner.setEmail();
 		ArrayList<Customer> customerList = CustomerController.getCustomerList();
-		for (Customer customer : customerList) {
-			if (customer.getEmail().equals(ownerEmail)) {
-				System.out.println("Existing customer cannot be registered as a restaurant owner");
-				return;
-			}
+
+		if (!Utility.isValidPassword(ownerPassword) || !Utility.isValidEmail(ownerEmail)) {
+			return;
 		}
+
 		for (Owner owner : ownerList) {
 			if (owner.getEmail().equals(ownerEmail)) {
-				System.out.println("Existing restaurant owner cannot be registered as a customer");
+				System.out.println("Email already exists.");
 				return;
 			}
 		}
-		newOwner.setEmail(ownerEmail);
+		for (Customer customer : customerList) {
+			if (customer.getEmail().equals(ownerEmail)) {
+				System.out.println("Existing customer cannot be registered as an owner");
+				return;
+			}
+		}
 
-		System.out.println("Please enter password: ");
-		newOwner.setPassword(scanner.nextLine());
+		Owner newOwner = new Owner(firstName, lastName, ownerEmail, ownerPassword);
+//		ownerList.add(newOwner);
+//		System.out.println("Owner added successfully");
 
+		System.out.println("SAMPLE DATA BEING ADDED");
 		// Sample data
 		Restaurant sampleRestaurant = new Restaurant("Student Canteen", "1, Monash Drive", "Caulfield", 3162,
 				"stucan@gmail.com", "04111222333", "Snacks", newOwner);

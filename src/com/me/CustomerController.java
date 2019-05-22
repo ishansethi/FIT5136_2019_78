@@ -34,10 +34,15 @@ public class CustomerController {
 	/*
 	 * Method to register a customer
 	 */
-	public static void registerCustomer(String firstName, String lastName, String customerEmail, String customerPassword) {
+	public static void registerCustomer(String firstName, String lastName, String customerEmail,
+			String customerPassword) {
 
 		ArrayList<Owner> ownerList = AdminController.getOwnerList();
-		
+
+		if (!Utility.isValidPassword(customerPassword) || !Utility.isValidEmail(customerEmail)) {
+			return;
+		}
+
 		for (Owner owner : ownerList) {
 			if (owner.getEmail().equals(customerEmail)) {
 				System.out.println("Existing restaurant owner cannot be registered as a customer");
@@ -46,14 +51,11 @@ public class CustomerController {
 		}
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(customerEmail)) {
-				System.out.println("Existing customer cannot be registered as a new customer");
+				System.out.println("Email already exists.");
 				return;
 			}
 		}
-		
-		if(!Utility.isValidPassword(customerPassword)) {
-			return;
-		}
+
 		Customer newCustomer = new Customer(firstName, lastName, customerEmail, customerPassword);
 
 		customerList.add(newCustomer);
@@ -84,7 +86,6 @@ public class CustomerController {
 	public static boolean validateLogin(String customerEmail, String customerPassword) {
 
 		boolean login = false;
-
 
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(customerEmail)) {

@@ -111,7 +111,6 @@ public class MainMenu {
 		System.out.println("(2) Delete an owner");
 		System.out.println("(3) View Restaurant Owners");
 		System.out.println("(4) Go back to admin dashboard");
-		System.out.println("(5) Log out");
 		System.out.println("Please select an option: ");
 	}
 
@@ -153,10 +152,9 @@ public class MainMenu {
 	}
 
 	private static void startProgram() {
-		
+
 		// Dummy data
 		Customer sampleCustomer1 = new Customer("Sample", "Customer", "sc@gmail.com", "pass");
-		System.out.println("Customer ID: " + sampleCustomer1.getCustId());
 		CustomerController.customerList.add(sampleCustomer1);
 
 		boolean loop = true;
@@ -274,7 +272,19 @@ public class MainMenu {
 				System.out.println("Enter password: ");
 				String customerPassword = scanner.nextLine();
 				if (CustomerController.validateLogin(customerEmail, customerPassword)) {
-					customerDashboard();
+					int customerIndex = -1;
+					for (Customer customer : CustomerController.getCustomerList()) {
+						if (customer.getEmail().equals(customerEmail)) {
+							customerIndex = CustomerController.getCustomerList().indexOf(customer);
+						}
+					}
+					String customerId = "-1";
+					if (customerIndex >= 0) {
+						customerId = CustomerController.customerList.get(customerIndex).getCustId();
+					}
+					if (!customerId.equals("-1")) {
+						customerDashboard(customerId);
+					}
 					loop = false;
 				} else {
 					System.out.println("Invalid credentials. Try again.");
@@ -324,7 +334,7 @@ public class MainMenu {
 		}
 	}
 
-	private static void customerDashboard() {
+	private static void customerDashboard(String customerId) {
 
 		boolean loop = true;
 		while (loop) {
@@ -342,7 +352,8 @@ public class MainMenu {
 					System.out.println("----------------------------------");
 					System.out.println("Choose from restaurant list? (y/n)");
 					String userInput = scanner.nextLine();
-					if (userInput.equalsIgnoreCase("y") || userInput.equalsIgnoreCase("yes")) {
+					if ((userInput.equalsIgnoreCase("y") || userInput.equalsIgnoreCase("yes"))
+							&& Utility.isAlphabetic(userInput)) {
 						System.out.println("Enter name of chosen restaurant: ");
 						String choice = scanner.nextLine();
 						Restaurant chosenRestaurant = null;
@@ -354,6 +365,19 @@ public class MainMenu {
 						System.out.println("Menu for " + chosenRestaurant.getName() + ": ");
 						for (Item item : chosenRestaurant.getMenu()) {
 							System.out.println("\nName: " + item.getName() + "\t$" + item.getPrice());
+						}
+						System.out.println("Choose item by entering its name or enter 'back' to go back");
+						String itemChoice = scanner.nextLine();
+						if (!itemChoice.equalsIgnoreCase("back") && Utility.isAlphabetic(itemChoice)) {
+							// TODO: Add more than one item
+							ArrayList<Item> itemList = new ArrayList<Item>();
+							for (Item item : chosenRestaurant.getMenu()) {
+								if (itemChoice.equalsIgnoreCase(item.getName())) {
+									itemList.add(item);
+								}
+							}
+							Cart cart = new Cart(customerId);
+							cart.setItemList(itemList);
 						}
 					}
 					break;
@@ -411,13 +435,13 @@ public class MainMenu {
 				switch (userChoice) {
 				case "1":
 					System.out.println("Restaurant names: ");
-					for (int i = 1; i <= allRestaurants.size(); i++) {
+					for (int i = 0; i < allRestaurants.size(); i++) {
 						System.out.println("\n" + i + ". " + allRestaurants.get(i).getName());
 					}
 					break;
 				case "2":
 					System.out.println("Choose restaurant to delete: ");
-					for (int i = 1; i <= allRestaurants.size(); i++) {
+					for (int i = 0; i < allRestaurants.size(); i++) {
 						System.out.println("\n" + i + ". " + allRestaurants.get(i).getName());
 					}
 					String userInput = scanner.nextLine();
@@ -486,19 +510,32 @@ public class MainMenu {
 			if (Utility.isIntString(userChoice)) {
 				switch (userChoice) {
 				case "1":
-					AdminController.registerOwner();
+					System.out.println("Please enter a first name: ");
+					String firstName = scanner.nextLine();
+
+					System.out.println("Please enter a last name: ");
+					String lastName = scanner.nextLine();
+
+					System.out.println("Please enter email address: ");
+					String ownerEmail = scanner.nextLine();
+
+					System.out.println(
+							"Please choose password [Min length = 8; With at least 3 alphabets and 2 numbers]: ");
+					String ownerPassword = scanner.nextLine();
+
+					AdminController.registerOwner(firstName, lastName, ownerEmail, ownerPassword);
 					break;
 				case "2":
 					AdminController.deleteOwner();
 					break;
 				case "3":
-					AdminController.getOwnerList();
+					ArrayList<Owner> ownerList = AdminController.getOwnerList();
+					for (Owner owner : ownerList) {
+						System.out.println(
+								owner.getFirstName() + " " + owner.getLastName() + "; Email: " + owner.getEmail());
+					}
 					break;
 				case "4":
-					adminDashboard();
-					break;
-				case "5":
-					System.out.println("Logged out successfully.");
 					loop = false;
 					break;
 				default:
@@ -517,7 +554,6 @@ public class MainMenu {
 				System.out.println("Invalid choice. Please choose again.");
 				// retryInput();
 			}
-			loop = false;
 		}
 	}
 

@@ -11,7 +11,7 @@ public class Utility {
 		customerId += 1;
 		return String.valueOf(customerId);
 	}
-	
+
 	public static String getNextRestaurantId() {
 		restaurantId += 1;
 		return String.valueOf(restaurantId);
@@ -64,10 +64,32 @@ public class Utility {
 		return true;
 	}
 
+	/**
+	 * Check if the string entered contains only numbers
+	 * 
+	 * @param input
+	 * @return
+	 */
 	public static boolean isIntString(String input) {
 		for (int i = 0; i < input.length(); i++) {
-			if (!Character.isDigit(input.charAt(i)))
+			if (!Character.isDigit(input.charAt(i))) {
 				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Check if the string entered is purely alphabetic
+	 * 
+	 * @param input
+	 * @return
+	 */
+	public static boolean isAlphabetic(String input) {
+		for (int i = 0; i < input.length(); i++) {
+			if (!Character.isAlphabetic(input.charAt(i))) {
+				return false;
+			}
 		}
 		return true;
 	}

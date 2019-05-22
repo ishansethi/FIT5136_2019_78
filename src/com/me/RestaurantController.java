@@ -20,7 +20,9 @@ public class RestaurantController {
 		ArrayList<Owner> ownerList = AdminController.getOwnerList();
 		for (Owner owner : ownerList) {
 			for (Restaurant restaurant : owner.getRestaurantList()) {
-				allRestaurants.add(restaurant);
+				if (!allRestaurants.contains(restaurant)) {
+					allRestaurants.add(restaurant);
+				}
 			}
 		}
 		return allRestaurants;
