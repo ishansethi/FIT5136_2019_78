@@ -31,13 +31,27 @@ public class AdminController {
 		Owner newOwner = new Owner("", "", "", "");
 		System.out.println("Please enter a first name: ");
 		newOwner.setFirstName(scanner.nextLine());
+		
 		System.out.println("Please enter a last name: ");
 		newOwner.setLastName(scanner.nextLine());
+		
 		System.out.println("Please enter email address: ");
-		newOwner.setEmail(scanner.nextLine());
+		String ownerEmail = scanner.nextLine();
+		//newOwner.setEmail();
+		ArrayList<Customer> customerList = CustomerController.getCustomerList();
+		for (Customer customer : customerList) {
+			if (customer.getEmail().equals(ownerEmail)) {
+				System.out.println("Existing restaurant owner cannot be registered as a customer");
+				return;
+			}
+		}
+		newOwner.setEmail(ownerEmail);
+		
 		System.out.println("Please enter password: ");
 		newOwner.setPassword(scanner.nextLine());
+		
 		ownerList.add(newOwner);
+		System.out.println("Owner added successfully");
 	}
 
 	/*

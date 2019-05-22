@@ -8,9 +8,8 @@ public class Cart {
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 	
 	// Constructor of Cart class
-	public Cart(String custId, ArrayList<Item> itemList) {
+	public Cart(String custId) {
 		this.custId = custId;
-		this.itemList = itemList;
 	}
 	
 	

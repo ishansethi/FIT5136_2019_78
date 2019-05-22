@@ -14,7 +14,11 @@ public class CustomerController {
 		System.out.println("Customer ID: " + sampleCustomer1.getCustId());
 		customerList.add(sampleCustomer1);
 	}
-
+	
+	public static ArrayList<Customer> getCustomerList() {
+		return customerList;
+	}
+	
 	/*
 	 * Method to view Cart
 	 */
