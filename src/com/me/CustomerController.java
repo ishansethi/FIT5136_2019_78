@@ -56,6 +56,12 @@ public class CustomerController {
 				return;
 			}
 		}
+		for (Customer customer : customerList) {
+			if (customer.getEmail().equals(customerEmail)) {
+				System.out.println("Existing customer cannot be registered as a new customer");
+				return;
+			}
+		}
 		newCustomer.setEmail(customerEmail);
 
 		System.out.println("Please enter password: ");

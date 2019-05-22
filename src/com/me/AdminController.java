@@ -14,13 +14,7 @@ public class AdminController {
 	}
 
 	public AdminController() {
-		// Sample data
-		Admin sampleAdmin = new Admin("Sample", "Admin", "sa@gmail.com", "pass");
-		adminList.add(sampleAdmin);
-
-		// Dummy data
-		Owner sampleOwner = new Owner("Sample", "Owner", "so@gmail.com", "pass");
-		ownerList.add(sampleOwner);
+		
 	}
 
 	/*
@@ -45,6 +39,12 @@ public class AdminController {
 				return;
 			}
 		}
+		for (Owner owner : ownerList) {
+			if (owner.getEmail().equals(ownerEmail)) {
+				System.out.println("Existing restaurant owner cannot be registered as a customer");
+				return;
+			}
+		}
 		newOwner.setEmail(ownerEmail);
 		
 		System.out.println("Please enter password: ");
@@ -60,18 +60,26 @@ public class AdminController {
 	public static void deleteOwner() {
 		System.out.println("Please enter an email address: ");
 		String email = scanner.nextLine();
+		int ownerIndex = -1;
 		for (Owner owner : ownerList) {
 			if (owner.getEmail().equals(email)) {
-				ownerList.remove(owner);
-				System.out.print("The owner has been deleted");
+				ownerIndex = ownerList.indexOf(owner);
 			} else {
 				System.out.print("Owner does not exist");
 			}
+		}
+		if (ownerIndex >= 0 ) {
+			ownerList.remove(ownerIndex);
+			System.out.println("Owner has been removed");
 		}
 	}
 
 	public static boolean validateAdminLogin(String adminEmail, String adminPassword) {
 
+		// Sample data
+		Admin sampleAdmin = new Admin("Sample", "Admin", "sa@gmail.com", "pass");
+		adminList.add(sampleAdmin);
+		
 		boolean login = false;
 
 		for (Admin admin : adminList) {
@@ -91,6 +99,10 @@ public class AdminController {
 
 	public static boolean validateOwnerLogin(String ownerEmail, String ownerPassword) {
 
+		// Dummy data
+		Owner sampleOwner = new Owner("Sample", "Owner", "so@gmail.com", "pass");
+		ownerList.add(sampleOwner);
+		
 		boolean login = false;
 
 		for (Owner owner : ownerList) {
