@@ -141,7 +141,8 @@ public class MainMenu {
 		System.out.println("(3) Manage Cart");
 		System.out.println("(4) Checkout ");
 		System.out.println("(5) View past orders");
-		System.out.println("(6) Log out");
+		System.out.println("(6) Delete customer account");
+		System.out.println("(7) Log out");
 		System.out.println("Please select an option: ");
 	}
 
@@ -152,6 +153,12 @@ public class MainMenu {
 	}
 
 	private static void startProgram() {
+		
+		// Dummy data
+		Customer sampleCustomer1 = new Customer("Sample", "Customer", "sc@gmail.com", "pass");
+		System.out.println("Customer ID: " + sampleCustomer1.getCustId());
+		CustomerController.customerList.add(sampleCustomer1);
+
 		boolean loop = true;
 		while (loop) {
 			displayMainMenu();
@@ -164,7 +171,20 @@ public class MainMenu {
 					break;
 				case "2":
 					// register
-					CustomerController.registerCustomer();
+					System.out.println("Please enter a first name: ");
+					String firstName = scanner.nextLine();
+
+					System.out.println("Please enter a last name: ");
+					String lastName = scanner.nextLine();
+
+					System.out.println("Please enter email address: ");
+					String customerEmail = scanner.nextLine();
+
+					System.out.println(
+							"Please choose password [Min length = 8; With at least 3 alphabets and 2 numbers]: ");
+					String customerPassword = scanner.nextLine();
+
+					CustomerController.registerCustomer(firstName, lastName, customerEmail, customerPassword);
 					break;
 				case "3":
 					// enter as a guest
@@ -256,6 +276,8 @@ public class MainMenu {
 				if (CustomerController.validateLogin(customerEmail, customerPassword)) {
 					customerDashboard();
 					loop = false;
+				} else {
+					System.out.println("Invalid credentials. Try again.");
 				}
 			} else {
 				System.out.println("Invalid email entered. Try again.");
@@ -353,6 +375,9 @@ public class MainMenu {
 					// TODO: view past orders
 					break;
 				case "6":
+					CustomerController.deleteCustomer();
+					break;
+				case "7":
 					System.out.println("Logged out successfully.");
 					loop = false;
 					break;
@@ -365,7 +390,8 @@ public class MainMenu {
 //				System.out.println("(3) Manage Cart");
 //				System.out.println("(4) Checkout ");
 //				System.out.println("(5) View past orders");
-//				System.out.println("(6) Log out");
+//				System.out.println("(6) Delete customer account");
+//				System.out.println("(7) Log out");
 
 			} else {
 				System.out.println("Invalid choice. Please choose again.");

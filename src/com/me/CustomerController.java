@@ -34,19 +34,10 @@ public class CustomerController {
 	/*
 	 * Method to register a customer
 	 */
-	public static void registerCustomer() {
+	public static void registerCustomer(String firstName, String lastName, String customerEmail, String customerPassword) {
 
-		Customer newCustomer = new Customer("", "", "", "");
-
-		System.out.println("Please enter a first name: ");
-		newCustomer.setFirstName(scanner.nextLine());
-
-		System.out.println("Please enter a last name: ");
-		newCustomer.setLastName(scanner.nextLine());
-
-		System.out.println("Please enter email address: ");
-		String customerEmail = scanner.nextLine();
 		ArrayList<Owner> ownerList = AdminController.getOwnerList();
+		
 		for (Owner owner : ownerList) {
 			if (owner.getEmail().equals(customerEmail)) {
 				System.out.println("Existing restaurant owner cannot be registered as a customer");
@@ -59,10 +50,11 @@ public class CustomerController {
 				return;
 			}
 		}
-		newCustomer.setEmail(customerEmail);
-
-		System.out.println("Please enter password: ");
-		newCustomer.setPassword(scanner.nextLine());
+		
+		if(!Utility.isValidPassword(customerPassword)) {
+			return;
+		}
+		Customer newCustomer = new Customer(firstName, lastName, customerEmail, customerPassword);
 
 		customerList.add(newCustomer);
 		System.out.println("Customer added successfully");
@@ -71,8 +63,9 @@ public class CustomerController {
 	/*
 	 * Method to delete a customer
 	 */
-	public static void deleteCustomer(String email) {
-
+	public static void deleteCustomer() {
+		System.out.println("Please enter the email address: ");
+		String email = scanner.nextLine();
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(email)) {
 				customer.setAddress("");
@@ -90,12 +83,8 @@ public class CustomerController {
 
 	public static boolean validateLogin(String customerEmail, String customerPassword) {
 
-		// Dummy data
-		Customer sampleCustomer1 = new Customer("Sample", "Customer", "sc@gmail.com", "pass");
-		System.out.println("Customer ID: " + sampleCustomer1.getCustId());
-		customerList.add(sampleCustomer1);
-
 		boolean login = false;
+
 
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(customerEmail)) {
@@ -106,8 +95,6 @@ public class CustomerController {
 				} else {
 					System.out.println("Wrong password entered.");
 				}
-			} else {
-				System.out.println("Email address not found in records.");
 			}
 		}
 

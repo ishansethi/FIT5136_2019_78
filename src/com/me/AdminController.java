@@ -14,7 +14,7 @@ public class AdminController {
 	}
 
 	public AdminController() {
-		
+
 	}
 
 	/*
@@ -25,13 +25,13 @@ public class AdminController {
 		Owner newOwner = new Owner("", "", "", "");
 		System.out.println("Please enter a first name: ");
 		newOwner.setFirstName(scanner.nextLine());
-		
+
 		System.out.println("Please enter a last name: ");
 		newOwner.setLastName(scanner.nextLine());
-		
+
 		System.out.println("Please enter email address: ");
 		String ownerEmail = scanner.nextLine();
-		//newOwner.setEmail();
+		// newOwner.setEmail();
 		ArrayList<Customer> customerList = CustomerController.getCustomerList();
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(ownerEmail)) {
@@ -46,7 +46,7 @@ public class AdminController {
 			}
 		}
 		newOwner.setEmail(ownerEmail);
-		
+
 		System.out.println("Please enter password: ");
 		newOwner.setPassword(scanner.nextLine());
 
@@ -83,7 +83,7 @@ public class AdminController {
 				System.out.print("Owner does not exist");
 			}
 		}
-		if (ownerIndex >= 0 ) {
+		if (ownerIndex >= 0) {
 			ownerList.remove(ownerIndex);
 			System.out.println("Owner has been removed");
 		}
@@ -93,8 +93,8 @@ public class AdminController {
 
 		// Sample data
 		Admin sampleAdmin = new Admin("Sample", "Admin", "sa@gmail.com", "pass");
-		adminList.add(sampleAdmin);
-		
+		AdminController.adminList.add(sampleAdmin);
+
 		boolean login = false;
 
 		for (Admin admin : adminList) {
@@ -117,7 +117,7 @@ public class AdminController {
 		// Dummy data
 		Owner sampleOwner = new Owner("Sample", "Owner", "so@gmail.com", "pass");
 		ownerList.add(sampleOwner);
-		
+
 		boolean login = false;
 
 		for (Owner owner : ownerList) {

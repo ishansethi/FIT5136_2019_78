@@ -39,7 +39,7 @@ public class Utility {
 
 		for (int i = 0; i < password.length(); i++) {
 			// check for alphabets
-			if (password.toLowerCase().charAt(i) >= 'a' && password.toLowerCase().charAt(i) >= 'z') {
+			if (password.toLowerCase().charAt(i) >= 'a' && password.toLowerCase().charAt(i) <= 'z') {
 				alphabetCount++;
 			}
 			// check for numbers
