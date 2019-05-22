@@ -1,5 +1,7 @@
 package com.me;
 
+import java.util.ArrayList;
+
 public class Restaurant {
 	private String id;
 	private String name;
@@ -9,6 +11,7 @@ public class Restaurant {
 	private String email;
 	private String phone;
 	private String cuisine;
+	private ArrayList<Item> menu = new ArrayList<Item>();
 
 	public Restaurant(String name, String address, String suburb, int postcode, String email, String phoneNumber,
 			String cuisine) {
@@ -80,6 +83,14 @@ public class Restaurant {
 
 	public void setCuisine(String cuisine) {
 		this.cuisine = cuisine;
+	}
+
+	public ArrayList<Item> getMenu() {
+		return menu;
+	}
+
+	public void setMenu(ArrayList<Item> menu) {
+		this.menu = menu;
 	}
 
 }

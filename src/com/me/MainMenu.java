@@ -137,10 +137,11 @@ public class MainMenu {
 		System.out.println("Hi! Welcome to Monash Eats, Let's Order Some food!");
 		System.out.println("========================================================");
 		System.out.println("(1) View Restaurants");
-		System.out.println("(2) Manage Cart");
-		System.out.println("(3) Checkout ");
-		System.out.println("(4) View your orders");
-		System.out.println("(5) Log out");
+		System.out.println("(2) Search Restaurants");
+		System.out.println("(3) Manage Cart");
+		System.out.println("(4) Checkout ");
+		System.out.println("(5) View past orders");
+		System.out.println("(6) Log out");
 		System.out.println("Please select an option: ");
 	}
 
@@ -325,10 +326,11 @@ public class MainMenu {
 					break;
 				}
 //				System.out.println("(1) View Restaurants");
-//				System.out.println("(2) Manage Cart");
-//				System.out.println("(3) Checkout ");
-//				System.out.println("(4) View your orders");
-//				System.out.println("(5) Log out");
+//				System.out.println("(2) Search Restaurants");
+//				System.out.println("(3) Manage Cart");
+//				System.out.println("(4) Checkout ");
+//				System.out.println("(5) View past orders");
+//				System.out.println("(6) Log out");
 
 			} else {
 				System.out.println("Invalid choice. Please choose again.");
@@ -403,9 +405,9 @@ public class MainMenu {
 
 				}
 
-				System.out.println("(1) Manage Customer Feedback");
-				System.out.println("(2) Manage Restaurant Owner");
-				System.out.println("(3) Log out");
+//				System.out.println("(1) Manage Customer Feedback");
+//				System.out.println("(2) Manage Restaurant Owner");
+//				System.out.println("(3) Log out");
 
 			} else {
 				System.out.println("Invalid choice. Please choose again.");

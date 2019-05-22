@@ -25,7 +25,7 @@ public class RestaurantController {
 		}
 		return allRestaurants;
 	}
-	
+
 	/**
 	 * Get a list of restaurants owned by a particular owner
 	 * 
@@ -50,8 +50,8 @@ public class RestaurantController {
 
 		ArrayList<Restaurant> searchResult = new ArrayList<Restaurant>();
 
-		String userChoice = scanner.nextLine();
 		searchChoices();
+		String userChoice = scanner.nextLine();
 		if (!Utility.isIntString(userChoice)) {
 			System.out.println("Invalid choice. Please choose again.");
 			searchChoices();
