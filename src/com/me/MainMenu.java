@@ -179,12 +179,10 @@ public class MainMenu {
 					System.out.println("Entered number is not a choice. Please choose again ");
 					break;
 				}
-
 			} else {
 				System.out.println("Invalid choice. Please choose again.");
 				// retryInput();
 			}
-			loop = false;
 		}
 	}
 
