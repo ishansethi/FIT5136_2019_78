@@ -41,7 +41,7 @@ public class AdminController {
 		ArrayList<Customer> customerList = CustomerController.getCustomerList();
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(ownerEmail)) {
-				System.out.println("Existing restaurant owner cannot be registered as a customer");
+				System.out.println("Existing customer cannot be registered as a restaurant owner");
 				return;
 			}
 		}
@@ -64,7 +64,6 @@ public class AdminController {
 			if (owner.getEmail().equals(email)) {
 				ownerList.remove(owner);
 				System.out.print("The owner has been deleted");
-				break;
 			} else {
 				System.out.print("Owner does not exist");
 			}
