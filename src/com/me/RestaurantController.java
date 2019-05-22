@@ -7,7 +7,7 @@ public class RestaurantController {
 
 	// instance variables
 	private static ArrayList<Restaurant> allRestaurants = new ArrayList<Restaurant>();
-	Scanner scanner = new Scanner(System.in);
+	private static Scanner scanner = new Scanner(System.in);
 
 	// constructor
 	public RestaurantController() {
@@ -26,7 +26,7 @@ public class RestaurantController {
 		return allRestaurants;
 	}
 
-	public ArrayList<Restaurant> searchRestaurant() {
+	public static ArrayList<Restaurant> searchRestaurant() {
 
 		getAllRestaurants();
 
@@ -96,7 +96,7 @@ public class RestaurantController {
 		return searchResult;
 	}
 
-	private void searchChoices() {
+	private static void searchChoices() {
 
 		System.out.println("Choose search filter: ");
 		System.out.println("1. Name");

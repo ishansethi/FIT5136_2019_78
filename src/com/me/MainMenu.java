@@ -34,7 +34,7 @@ public class MainMenu {
 		System.out.println("Welcome to Monash Eats");
 		System.out.println("==================================================");
 		System.out.println("(1) Login");
-		System.out.println("(2) Register");
+		System.out.println("(2) Register as a new customer");
 		System.out.println("(3) Enter as guest");
 		System.out.println("(4) Exit");
 		System.out.print("Please choose an option....... ");
@@ -53,19 +53,6 @@ public class MainMenu {
 		System.out.println("(3) Admin");
 		System.out.println("(4) Back to Main Menu");
 		System.out.print("Please choose an option.......");
-	}
-
-	/**
-	 * A method to display the register menu
-	 */
-	public static void displayRegister() {
-		// clear();
-		System.out.println("========================================================");
-		System.out.println("Please select 1 for register or 2 for back to main menu.");
-		System.out.println("========================================================");
-		System.out.println("(1) Register");
-		System.out.println("(2) Back to Main Menu");
-		System.out.print("Please choose an option....... ");
 	}
 
 	/**
@@ -177,7 +164,7 @@ public class MainMenu {
 					break;
 				case "2":
 					// register
-					register();
+					CustomerController.registerCustomer();
 					break;
 				case "3":
 					// enter as a guest
@@ -233,33 +220,6 @@ public class MainMenu {
 		}
 	}
 
-	private static void register() {
-
-		boolean loop = true;
-		while (loop) {
-			displayRegister();
-			String userChoice = scanner.nextLine();
-			if (Utility.isIntString(userChoice)) {
-				switch (userChoice) {
-				case "1":
-					CustomerController.registerCustomer();
-					startProgram();
-					break;
-				case "2":
-					startProgram();
-					break;
-				default:
-					System.out.println("Entered number is not a choice. Please choose again ");
-					register();
-					break;
-				}
-			} else {
-				System.out.println("Invalid choice. Please choose again.");
-				// retryInput();
-			}
-		}
-	}
-
 	private static void enterAsGuest() {
 
 		boolean loop = true;
@@ -267,11 +227,25 @@ public class MainMenu {
 			displayGuestDashboard();
 			String userChoice = scanner.nextLine();
 			if (Utility.isIntString(userChoice)) {
-
+				switch (userChoice) {
+				case "1":
+					RestaurantController.searchRestaurant();
+					break;
+				case "2":
+					startProgram();
+					break;
+				default:
+					System.out.println("Entered number is not a choice. Please choose again ");
+					manageRestaurantOwner();
+					break;
+				}
+				loop = false;
 			} else {
 				System.out.println("Invalid choice. Please choose again.");
 				// retryInput();
 			}
+//			System.out.println("(1) View Restaurants");
+//			System.out.println("(2) Back to Main Menu");
 		}
 	}
 
