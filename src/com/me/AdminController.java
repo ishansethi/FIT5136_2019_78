@@ -13,6 +13,16 @@ public class AdminController {
 		return ownerList;
 	}
 
+	public AdminController() {
+		// Sample data
+		Admin sampleAdmin = new Admin("Sample", "Admin", "sa@gmail.com", "pass");
+		adminList.add(sampleAdmin);
+
+		// Dummy data
+		Owner sampleOwner = new Owner("Sample", "Owner", "so@gmail.com", "pass");
+		ownerList.add(sampleOwner);
+	}
+
 	/*
 	 * Method for registering an owner
 	 */
@@ -49,10 +59,6 @@ public class AdminController {
 
 	public static boolean validateAdminLogin(String adminEmail, String adminPassword) {
 
-		// Sample data
-		Admin sampleAdmin = new Admin("Sample", "Admin", "sa@gmail.com", "pass");
-		adminList.add(sampleAdmin);
-
 		boolean login = false;
 
 		for (Admin admin : adminList) {
@@ -71,10 +77,6 @@ public class AdminController {
 	}
 
 	public static boolean validateOwnerLogin(String ownerEmail, String ownerPassword) {
-
-		// Dummy data
-		Owner sampleOwner = new Owner("Sample", "Owner", "so@gmail.com", "pass");
-		ownerList.add(sampleOwner);
 
 		boolean login = false;
 

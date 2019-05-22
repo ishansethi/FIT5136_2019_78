@@ -8,6 +8,13 @@ public class CustomerController {
 	public static ArrayList<Customer> customerList = new ArrayList<Customer>();
 	static Scanner scanner = new Scanner(System.in);
 
+	public CustomerController() {
+		// Dummy data
+		Customer sampleCustomer1 = new Customer("Sample", "Customer", "sc@gmail.com", "pass");
+		System.out.println("Customer ID: " + sampleCustomer1.getCustId());
+		customerList.add(sampleCustomer1);
+	}
+
 	/*
 	 * Method to view Cart
 	 */
@@ -58,7 +65,7 @@ public class CustomerController {
 	 * Method to delete a customer
 	 */
 	public static void deleteCustomer(String email) {
-		
+
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(email)) {
 				customer.setAddress("");
@@ -75,11 +82,6 @@ public class CustomerController {
 	}
 
 	public static boolean validateLogin(String customerEmail, String customerPassword) {
-
-		// Dummy data
-		Customer sampleCustomer1 = new Customer("Sample", "Customer", "sc@gmail.com", "pass");
-		System.out.println("Sample Customer ID: " + sampleCustomer1.getCustId());
-		customerList.add(sampleCustomer1);
 
 		boolean login = false;
 
