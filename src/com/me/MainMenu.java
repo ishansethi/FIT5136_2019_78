@@ -337,7 +337,11 @@ public class MainMenu {
 					break;
 				case "2":
 					// search for a restaurant
-					RestaurantController.searchRestaurant();
+					ArrayList<Restaurant> foundRestaurants = RestaurantController.searchRestaurant();
+					System.out.println("Restaurant names: ");
+					for (Restaurant rest : foundRestaurants) {
+						System.out.println(rest.getName());
+					}
 					break;
 				case "3":
 					// TODO: manage cart

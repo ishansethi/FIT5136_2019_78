@@ -9,16 +9,13 @@ public class CustomerController {
 	static Scanner scanner = new Scanner(System.in);
 
 	public CustomerController() {
-		// Dummy data
-		Customer sampleCustomer1 = new Customer("Sample", "Customer", "sc@gmail.com", "pass");
-		System.out.println("Customer ID: " + sampleCustomer1.getCustId());
-		customerList.add(sampleCustomer1);
+
 	}
-	
+
 	public static ArrayList<Customer> getCustomerList() {
 		return customerList;
 	}
-	
+
 	/*
 	 * Method to view Cart
 	 */
@@ -92,6 +89,11 @@ public class CustomerController {
 	}
 
 	public static boolean validateLogin(String customerEmail, String customerPassword) {
+
+		// Dummy data
+		Customer sampleCustomer1 = new Customer("Sample", "Customer", "sc@gmail.com", "pass");
+		System.out.println("Customer ID: " + sampleCustomer1.getCustId());
+		customerList.add(sampleCustomer1);
 
 		boolean login = false;
 
