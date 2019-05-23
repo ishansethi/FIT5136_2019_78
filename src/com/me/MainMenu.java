@@ -137,7 +137,7 @@ public class MainMenu {
 		System.out.println("========================================================");
 		System.out.println("(1) View Restaurants");
 		System.out.println("(2) Search Restaurants");
-		System.out.println("(3) Manage Cart");
+		System.out.println("(3) View/Manage Cart");
 		System.out.println("(4) Checkout ");
 		System.out.println("(5) View past orders");
 		System.out.println("(6) Delete customer account");
@@ -191,6 +191,7 @@ public class MainMenu {
 				case "4":
 					// exit
 					loop = false;
+					
 					System.out.println("Thank you, Goodbye!");
 					break;
 				default:
@@ -335,8 +336,13 @@ public class MainMenu {
 	}
 
 	private static void customerDashboard(String customerId) {
-
+		Cart cart = new Cart(customerId) ;
 		boolean loop = true;
+		boolean cartloop = false;
+		float Totalsum  = 0 ;
+		ArrayList<Order> orderList = new ArrayList<Order>();
+		ArrayList<Item> itemList = new ArrayList<Item>();
+		
 		while (loop) {
 			displayCustomerDashboard();
 			String userChoice = scanner.nextLine();
@@ -360,24 +366,42 @@ public class MainMenu {
 						for (Restaurant rest : allRestaurants) {
 							if (rest.getName().equalsIgnoreCase(choice)) {
 								chosenRestaurant = rest;
+								cartloop = true;
 							}
 						}
-						System.out.println("Menu for " + chosenRestaurant.getName() + ": ");
-						for (Item item : chosenRestaurant.getMenu()) {
-							System.out.println("\nName: " + item.getName() + "\t$" + item.getPrice());
-						}
-						System.out.println("Choose item by entering its name or enter 'back' to go back");
-						String itemChoice = scanner.nextLine();
-						if (!itemChoice.equalsIgnoreCase("back") && Utility.isAlphabetic(itemChoice)) {
-							// TODO: Add more than one item
-							ArrayList<Item> itemList = new ArrayList<Item>();
+						
+						while(cartloop) {
+							System.out.println("Menu for " + chosenRestaurant.getName() + ": ");
 							for (Item item : chosenRestaurant.getMenu()) {
-								if (itemChoice.equalsIgnoreCase(item.getName())) {
-									itemList.add(item);
+								System.out.println("\nName: " + item.getName() + "\t$" + item.getPrice());
+							}
+							System.out.println("Choose item by entering its name or enter 'back' to go back");
+							String itemChoice = scanner.nextLine();
+							
+							if(itemChoice.equalsIgnoreCase("back")) {
+								cartloop = false;
+								break;
+							}
+							
+							if (!itemChoice.equalsIgnoreCase("back") /*&& Utility.isAlphabetic(itemChoice) */) {
+								// TODO: Add more than one item
+								for (Item item : chosenRestaurant.getMenu()) {
+									if (itemChoice.equalsIgnoreCase(item.getName())) {
+										itemList.add(item);
+									}
+								}
+								cart.setItemList(itemList);
+								System.out.println("Item is added to cart");
+								
+								System.out.println("Want to add more items? (y/n)");
+								String userC = scanner.nextLine();
+								if (userC.equalsIgnoreCase("y") || userC.equalsIgnoreCase("yes")){
+									continue;
+								}else if(userC.equalsIgnoreCase("n") || userC.equalsIgnoreCase("no")) {
+									cartloop = false;
+									break;
 								}
 							}
-							Cart cart = new Cart(customerId);
-							cart.setItemList(itemList);
 						}
 					}
 					break;
@@ -390,13 +414,69 @@ public class MainMenu {
 					}
 					break;
 				case "3":
-					// TODO: manage cart
+					// TODO: View/manage cart
+				    Totalsum  = 0 ;
+					for (Item item : cart.getItemList()) {
+						System.out.println("Cart Item List ");
+						System.out.println(item.getName() + " $" + item.getPrice());
+						Totalsum += item.getPrice();
+					}
+					
+					System.out.println("Cart Total Value : $"+Totalsum);
+					System.out.println("Do you like to proceed to menu?(y/n)");
+					String userC = scanner.nextLine();
+					if (userC.equalsIgnoreCase("y") || userC.equalsIgnoreCase("yes")){
+						//
+					}else if(userC.equalsIgnoreCase("n") || userC.equalsIgnoreCase("no")) {
+						//TODO: edit cart
+					}
+					
 					break;
 				case "4":
 					// TODO: checkout
+					System.out.println("Cart Total Value : $"+Totalsum);
+					System.out.println("Do you like to Place the order?(y/n)");
+					
+					String userChoi = scanner.nextLine();
+					if (userChoi.equalsIgnoreCase("y") || userChoi.equalsIgnoreCase("yes")){
+						Order custOrder = new Order();
+						
+						custOrder.setId("1"); //TODO: What to keep here?
+						custOrder.setCustId(customerId);
+						custOrder.setTotalCost(Totalsum);
+						custOrder.setStatus("DONE"); //TODO: This should be ENUM .
+						custOrder.setDateCreated(new Date());
+						//
+						orderList.add(custOrder);
+					}else if(userChoi.equalsIgnoreCase("n") || userChoi.equalsIgnoreCase("no")) {
+						//TODO: edit cart
+					}
+		
 					break;
 				case "5":
 					// TODO: view past orders
+					boolean looporder = false;
+					for (Order custOrder : orderList) {
+						System.out.println("OrderId:" + custOrder.getId()  +
+										   "CustId: " + custOrder.getCustId() +
+										   "TotalCost: $" + custOrder.getTotalCost() +
+										   "Order Date: " +custOrder.getDateCreated() + 
+										   "Order Status: " + custOrder.getStatus());
+						looporder = true;
+					}
+					
+					while(looporder) {
+						System.out.println("Go back to Main Menu ?(y/n)");
+						String userOrderChoice = scanner.nextLine();
+						if (userOrderChoice.equalsIgnoreCase("y") || userOrderChoice.equalsIgnoreCase("yes")){
+							// 
+							looporder = false;
+							break;
+						}else {
+							
+							continue;
+						}
+					}
 					break;
 				case "6":
 					CustomerController.deleteCustomer();
@@ -424,6 +504,12 @@ public class MainMenu {
 		}
 	}
 
+	
+	
+	
+	
+	
+	
 	private static void ownerDashboard(String ownerEmail) {
 
 		boolean loop = true;
