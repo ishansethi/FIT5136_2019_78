@@ -416,8 +416,8 @@ public class MainMenu {
 				case "3":
 					// TODO: View/manage cart
 				    Totalsum  = 0 ;
-					for (Item item : cart.getItemList()) {
-						System.out.println("Cart Item List ");
+				    System.out.println("Cart Item List ");
+					for (Item item : cart.getItemList()) {						
 						System.out.println(item.getName() + " $" + item.getPrice());
 						Totalsum += item.getPrice();
 					}
@@ -457,11 +457,11 @@ public class MainMenu {
 					// TODO: view past orders
 					boolean looporder = false;
 					for (Order custOrder : orderList) {
-						System.out.println("OrderId:" + custOrder.getId()  +
-										   "CustId: " + custOrder.getCustId() +
-										   "TotalCost: $" + custOrder.getTotalCost() +
-										   "Order Date: " +custOrder.getDateCreated() + 
-										   "Order Status: " + custOrder.getStatus());
+						System.out.println("OrderId:" + custOrder.getId());
+						System.out.println("CustId: " + custOrder.getCustId());
+						System.out.println("TotalCost: $" + custOrder.getTotalCost());
+						System.out.println( "Order Date: " +custOrder.getDateCreated()); 
+						System.out.println("Order Status: " + custOrder.getStatus());
 						looporder = true;
 					}
 					
