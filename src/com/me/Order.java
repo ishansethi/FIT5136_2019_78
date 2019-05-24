@@ -3,18 +3,14 @@ package com.me;
 import java.util.Date;
 
 public class Order {
-	// Fields of an Order object
+	// attributes for order
 	private String id;
 	private String custId;
 	private String status;
 	private Date dateCreated;
 	private float totalCost;
-	
-	// Constructor of class Order
-	public Order() {
-		
-	}
 
+	// getters and setters
 	public String getId() {
 		return id;
 	}

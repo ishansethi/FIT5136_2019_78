@@ -2,7 +2,7 @@ package com.me;
 
 public class Customer {
 
-	// instance variables
+	// attributes of customer
 	private String custId;
 	private String firstName;
 	private String lastName;
@@ -11,7 +11,7 @@ public class Customer {
 	private String email;
 	private String password;
 
-	// creating instance of customer with mandatory fields
+	// constructor
 	public Customer(String firstName, String lastName, String email, String password) {
 		this.custId = Utility.getNextCustomerId();
 		this.firstName = firstName;
@@ -20,6 +20,7 @@ public class Customer {
 		this.password = password;
 	}
 
+	// getters and setters
 	public String getCustId() {
 		return custId;
 	}

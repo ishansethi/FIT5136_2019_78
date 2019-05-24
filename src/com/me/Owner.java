@@ -3,7 +3,7 @@ package com.me;
 import java.util.ArrayList;
 
 public class Owner {
-	// instance variables
+	// attributes for owner
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -12,7 +12,7 @@ public class Owner {
 	private String password;
 	private ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>();
 
-	// creating instance of customer with mandatory fields
+	// constructor
 	public Owner(String firstName, String lastName, String email, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -20,6 +20,7 @@ public class Owner {
 		this.password = password;
 	}
 
+	// getters and setters
 	public String getFirstName() {
 		return firstName;
 	}

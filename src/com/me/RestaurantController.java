@@ -5,14 +5,8 @@ import java.util.Scanner;
 
 public class RestaurantController {
 
-	// instance variables
 	private static ArrayList<Restaurant> allRestaurants = new ArrayList<Restaurant>();
 	private static Scanner scanner = new Scanner(System.in);
-
-	// constructor
-	public RestaurantController() {
-
-	}
 
 	public static ArrayList<Restaurant> getAllRestaurants() {
 
@@ -46,6 +40,11 @@ public class RestaurantController {
 		return restaurantList;
 	}
 
+	/**
+	 * Method to search restaurants based on user choice of filter
+	 * 
+	 * @return
+	 */
 	public static ArrayList<Restaurant> searchRestaurant() {
 
 		getAllRestaurants();
@@ -61,6 +60,7 @@ public class RestaurantController {
 
 		switch (userChoice) {
 		case "1":
+			// search by restaurant name
 			System.out.println("Enter restaurant name: ");
 			String resName = scanner.nextLine();
 			for (Restaurant restaurant : allRestaurants) {
@@ -73,6 +73,7 @@ public class RestaurantController {
 			}
 			break;
 		case "2":
+			// search by suburb
 			System.out.println("Enter suburb name: ");
 			String resSuburb = scanner.nextLine();
 			for (Restaurant restaurant : allRestaurants) {
@@ -85,6 +86,7 @@ public class RestaurantController {
 			}
 			break;
 		case "3":
+			// search by cuisine
 			System.out.println("Enter cuisine: ");
 			String resCuisine = scanner.nextLine();
 			for (Restaurant restaurant : allRestaurants) {
@@ -97,6 +99,7 @@ public class RestaurantController {
 			}
 			break;
 		case "4":
+			// search by postcode
 			System.out.println("Enter postcode: ");
 			String resPostcode = scanner.nextLine();
 			for (Restaurant restaurant : allRestaurants) {
@@ -117,7 +120,7 @@ public class RestaurantController {
 	}
 
 	private static void searchChoices() {
-
+		// search options
 		System.out.println("Choose search filter: ");
 		System.out.println("1. Name");
 		System.out.println("2. Suburb");

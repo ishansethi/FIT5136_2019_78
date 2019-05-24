@@ -1,22 +1,22 @@
 package com.me;
 
 public class Admin {
-	// Attributes of an admin
+	
+	// attributes of an admin
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
-	
-	/*
-	 * Constructor for objects of class Admin
-	 */
+
+	// constructor for objects of class Admin
 	public Admin(String firstName, String lastName, String email, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 	}
-	
+
+	// getters and setters
 	public String getFirstName() {
 		return firstName;
 	}

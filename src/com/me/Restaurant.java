@@ -3,6 +3,8 @@ package com.me;
 import java.util.ArrayList;
 
 public class Restaurant {
+
+	// attributes for restaurant
 	private String id;
 	private String name;
 	private String address;
@@ -14,6 +16,7 @@ public class Restaurant {
 	private Owner owner;
 	private ArrayList<Item> menu = new ArrayList<Item>();
 
+	// constructor
 	public Restaurant(String name, String address, String suburb, int postcode, String email, String phoneNumber,
 			String cuisine, Owner owner) {
 		this.id = Utility.getNextRestaurantId();
@@ -27,6 +30,7 @@ public class Restaurant {
 		this.owner = owner;
 	}
 
+	// getters and setters
 	public String getId() {
 		return id;
 	}

@@ -6,66 +6,79 @@ import java.util.Scanner;
 public class CustomerController {
 
 	public static ArrayList<Customer> customerList = new ArrayList<Customer>();
-	static Scanner scanner = new Scanner(System.in);
+	private static Scanner scanner = new Scanner(System.in);
 
-	public CustomerController() {
-
-	}
-
+	// getter for customer list
 	public static ArrayList<Customer> getCustomerList() {
 		return customerList;
 	}
 
-	/*
-	 * Method to view Cart
+	/**
+	 * Method to retrieve item list of a cart
+	 * 
+	 * @return
 	 */
 	public ArrayList<Item> viewCart() {
 		ArrayList<Item> itemList = new ArrayList<Item>();
 		return itemList;
 	}
 
-	/*
-	 * Method to edit Cart
+	/**
+	 * Method to register a new customer
+	 * 
+	 * @param firstName
+	 * @param lastName
+	 * @param customerEmail
+	 * @param customerPassword
 	 */
-	public void editCart() {
-
-	}
-
-	/*
-	 * Method to register a customer
-	 */
-	public static void registerCustomer(String firstName, String lastName, String customerEmail,
+	public static boolean registerCustomer(String firstName, String lastName, String customerEmail,
 			String customerPassword) {
 
+		// local list of all owners
 		ArrayList<Owner> ownerList = AdminController.getOwnerList();
 
-		if (!Utility.isValidPassword(customerPassword) || !Utility.isValidEmail(customerEmail)) {
-			return;
+		// password not strong enough
+		if (!Utility.isValidPassword(customerPassword)) {
+			System.out.println("Entered password is not strong enough.");
+			return false;
 		}
 
+		// email address not valid
+		if (!Utility.isValidEmail(customerEmail)) {
+			System.out.println("Entered email is not valid.");
+			return false;
+		}
+
+		// check if new customer is an owner already
 		for (Owner owner : ownerList) {
 			if (owner.getEmail().equals(customerEmail)) {
 				System.out.println("Existing restaurant owner cannot be registered as a customer");
-				return;
+				return false;
 			}
 		}
+
+		// check if customer email is already used
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(customerEmail)) {
 				System.out.println("Email already exists.");
-				return;
+				return false;
 			}
 		}
 
 		Customer newCustomer = new Customer(firstName, lastName, customerEmail, customerPassword);
 
+		// add customer to customer list
 		customerList.add(newCustomer);
 		System.out.println("Customer added successfully");
+		return true;
 	}
 
-	/*
+	/**
 	 * Method to delete a customer
 	 */
 	public static void deleteCustomer() {
+
+		// delete all the fields of the customer except email address
 		System.out.println("Please enter the email address: ");
 		String email = scanner.nextLine();
 		for (Customer customer : customerList) {
@@ -83,10 +96,18 @@ public class CustomerController {
 		}
 	}
 
+	/**
+	 * Method to validate customer login credentials
+	 * 
+	 * @param customerEmail
+	 * @param customerPassword
+	 * @return
+	 */
 	public static boolean validateLogin(String customerEmail, String customerPassword) {
 
 		boolean login = false;
 
+		// validate email and password pair
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equals(customerEmail)) {
 				if (customer.getPassword().equals("")) {

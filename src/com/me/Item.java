@@ -2,18 +2,19 @@ package com.me;
 
 public class Item {
 
-	// instance variables
+	// attributes of Item
 	private String name;
 	private String description;
 	private float price;
 
-	// creating an instance of Item
+	// constructor
 	public Item(String name, String description, float price) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 	}
 
+	// getters and setters
 	public String getName() {
 		return name;
 	}
