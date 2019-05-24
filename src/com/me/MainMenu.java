@@ -191,7 +191,7 @@ public class MainMenu {
 				case "4":
 					// exit
 					loop = false;
-					
+
 					System.out.println("Thank you, Goodbye!");
 					break;
 				default:
@@ -336,13 +336,13 @@ public class MainMenu {
 	}
 
 	private static void customerDashboard(String customerId) {
-		Cart cart = new Cart(customerId) ;
+		Cart cart = new Cart(customerId);
 		boolean loop = true;
 		boolean cartloop = false;
-		float Totalsum  = 0 ;
+		float Totalsum = 0;
 		ArrayList<Order> orderList = new ArrayList<Order>();
 		ArrayList<Item> itemList = new ArrayList<Item>();
-		
+
 		while (loop) {
 			displayCustomerDashboard();
 			String userChoice = scanner.nextLine();
@@ -369,21 +369,21 @@ public class MainMenu {
 								cartloop = true;
 							}
 						}
-						
-						while(cartloop) {
+
+						while (cartloop) {
 							System.out.println("Menu for " + chosenRestaurant.getName() + ": ");
 							for (Item item : chosenRestaurant.getMenu()) {
 								System.out.println("\nName: " + item.getName() + "\t$" + item.getPrice());
 							}
 							System.out.println("Choose item by entering its name or enter 'back' to go back");
 							String itemChoice = scanner.nextLine();
-							
-							if(itemChoice.equalsIgnoreCase("back")) {
+
+							if (itemChoice.equalsIgnoreCase("back")) {
 								cartloop = false;
 								break;
 							}
-							
-							if (!itemChoice.equalsIgnoreCase("back") /*&& Utility.isAlphabetic(itemChoice) */) {
+
+							if (!itemChoice.equalsIgnoreCase("back") /* && Utility.isAlphabetic(itemChoice) */) {
 								// TODO: Add more than one item
 								for (Item item : chosenRestaurant.getMenu()) {
 									if (itemChoice.equalsIgnoreCase(item.getName())) {
@@ -392,12 +392,12 @@ public class MainMenu {
 								}
 								cart.setItemList(itemList);
 								System.out.println("Item is added to cart");
-								
+
 								System.out.println("Want to add more items? (y/n)");
 								String userC = scanner.nextLine();
-								if (userC.equalsIgnoreCase("y") || userC.equalsIgnoreCase("yes")){
+								if (userC.equalsIgnoreCase("y") || userC.equalsIgnoreCase("yes")) {
 									continue;
-								}else if(userC.equalsIgnoreCase("n") || userC.equalsIgnoreCase("no")) {
+								} else if (userC.equalsIgnoreCase("n") || userC.equalsIgnoreCase("no")) {
 									cartloop = false;
 									break;
 								}
@@ -415,43 +415,47 @@ public class MainMenu {
 					break;
 				case "3":
 					// TODO: View/manage cart
-				    Totalsum  = 0 ;
-				    System.out.println("Cart Item List ");
-					for (Item item : cart.getItemList()) {						
-						System.out.println(item.getName() + " $" + item.getPrice());
-						Totalsum += item.getPrice();
+					if (!cart.getItemList().isEmpty()) {
+						Totalsum = 0;
+						System.out.println("Cart Item List ");
+						for (Item item : cart.getItemList()) {
+							System.out.println(item.getName() + " $" + item.getPrice());
+							Totalsum += item.getPrice();
+						}
+
+						System.out.println("Cart Total Value : $" + Totalsum);
+						System.out.println("Do you like to proceed to menu?(y/n)");
+						String userC = scanner.nextLine();
+						if (userC.equalsIgnoreCase("y") || userC.equalsIgnoreCase("yes")) {
+							//
+						} else if (userC.equalsIgnoreCase("n") || userC.equalsIgnoreCase("no")) {
+							// TODO: edit cart
+						}
+					} else {
+						System.out.println("Cart is empty.");
 					}
-					
-					System.out.println("Cart Total Value : $"+Totalsum);
-					System.out.println("Do you like to proceed to menu?(y/n)");
-					String userC = scanner.nextLine();
-					if (userC.equalsIgnoreCase("y") || userC.equalsIgnoreCase("yes")){
-						//
-					}else if(userC.equalsIgnoreCase("n") || userC.equalsIgnoreCase("no")) {
-						//TODO: edit cart
-					}
-					
+
 					break;
 				case "4":
 					// TODO: checkout
-					System.out.println("Cart Total Value : $"+Totalsum);
+					System.out.println("Cart Total Value : $" + Totalsum);
 					System.out.println("Do you like to Place the order?(y/n)");
-					
+
 					String userChoi = scanner.nextLine();
-					if (userChoi.equalsIgnoreCase("y") || userChoi.equalsIgnoreCase("yes")){
+					if (userChoi.equalsIgnoreCase("y") || userChoi.equalsIgnoreCase("yes")) {
 						Order custOrder = new Order();
-						
-						custOrder.setId("1"); //TODO: What to keep here?
+
+						custOrder.setId("1"); // TODO: What to keep here?
 						custOrder.setCustId(customerId);
 						custOrder.setTotalCost(Totalsum);
-						custOrder.setStatus("DONE"); //TODO: This should be ENUM .
+						custOrder.setStatus("ACCEPTED");
 						custOrder.setDateCreated(new Date());
 						//
 						orderList.add(custOrder);
-					}else if(userChoi.equalsIgnoreCase("n") || userChoi.equalsIgnoreCase("no")) {
-						//TODO: edit cart
+					} else if (userChoi.equalsIgnoreCase("n") || userChoi.equalsIgnoreCase("no")) {
+						// TODO: edit cart
 					}
-		
+
 					break;
 				case "5":
 					// TODO: view past orders
@@ -460,20 +464,20 @@ public class MainMenu {
 						System.out.println("OrderId:" + custOrder.getId());
 						System.out.println("CustId: " + custOrder.getCustId());
 						System.out.println("TotalCost: $" + custOrder.getTotalCost());
-						System.out.println( "Order Date: " +custOrder.getDateCreated()); 
+						System.out.println("Order Date: " + custOrder.getDateCreated());
 						System.out.println("Order Status: " + custOrder.getStatus());
 						looporder = true;
 					}
-					
-					while(looporder) {
+
+					while (looporder) {
 						System.out.println("Go back to Main Menu ?(y/n)");
 						String userOrderChoice = scanner.nextLine();
-						if (userOrderChoice.equalsIgnoreCase("y") || userOrderChoice.equalsIgnoreCase("yes")){
-							// 
+						if (userOrderChoice.equalsIgnoreCase("y") || userOrderChoice.equalsIgnoreCase("yes")) {
+							//
 							looporder = false;
 							break;
-						}else {
-							
+						} else {
+
 							continue;
 						}
 					}
@@ -504,12 +508,6 @@ public class MainMenu {
 		}
 	}
 
-	
-	
-	
-	
-	
-	
 	private static void ownerDashboard(String ownerEmail) {
 
 		boolean loop = true;
