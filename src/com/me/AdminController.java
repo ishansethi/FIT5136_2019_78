@@ -42,11 +42,8 @@ public class AdminController {
 		}
 
 		Owner newOwner = new Owner(firstName, lastName, ownerEmail, ownerPassword);
-//		ownerList.add(newOwner);
-//		System.out.println("Owner added successfully");
 
-		System.out.println("SAMPLE DATA BEING ADDED");
-		// Sample data
+		// Sample data for restaurant
 		Restaurant sampleRestaurant = new Restaurant("Student Canteen", "1, Monash Drive", "Caulfield", 3162,
 				"stucan@gmail.com", "04111222333", "Snacks", newOwner);
 
